@@ -219,7 +219,9 @@ Conjunto de teste: 20 perguntas, sendo 14 na base e 6 fora da base. Geração de
 | Fatos cobertos | 0,0% | **88,2%** | 5,9% | 82,4% |
 | Recusa correta (fora da base) | 66,7% | 66,7% | 33,3% | **100,0%** |
 | Taxa de alucinação | 60,0% | **15,0%** | 75,0% | **15,0%** |
-| Cita a fonte certa | 0,0% | 64,3% | 0,0% | **92,9%** |
+| Cita a fonte certa | 0,0% | 57,1% | 0,0% | **92,9%** |
+
+> **Relatório detalhado:** [`results/relatorio.md`](results/relatorio.md) organiza as métricas por **critério de aceitação** (baseado na fonte, redução de alucinação, relevância e uso do contexto). Para cada critério, mostra como cada modo se comporta e por quê, com contagens absolutas, revisão manual do tipo de erro, resultado pergunta a pergunta, o que mudou entre os modos e o que a busca entregou nas perguntas fora da base.
 
 Distribuição das respostas:
 
@@ -232,7 +234,16 @@ Distribuição das respostas:
 | Recusa correta | 4 | 4 | 2 | 6 |
 | Alucinação (fora da base) | 2 | 2 | 4 | 0 |
 
-Arquivos: `results/metricas.json`, `results/respostas.json` (as 80 respostas completas) e `results/relatorio.md`.
+A taxa de alucinação automática é igual em B e D, mas a revisão manual mostra que o tipo de erro é diferente em cada modo:
+
+| Tipo de erro (revisão manual) | A | B | C | D |
+|---|---:|---:|---:|---:|
+| Inventou informação que não existe na base | 8 | 0 | 12 | 0 |
+| Usou um trecho da base que não responde a pergunta | 0 | 3 | 0 | 1 |
+| Resposta vaga, sem fato concreto ou sem a regra | 4 | 0 | 4 | 0 |
+| **Respostas úteis** (corretas + recusas corretas) | 4 | 16 | 2 | **19** |
+
+Arquivos: `results/metricas.json`, `results/respostas.json` (as 80 respostas completas), `results/revisao_manual.json` (o rótulo e a justificativa de cada resposta) e `results/relatorio.md`.
 
 **Revisão do avaliador.** Ao ler as 80 respostas, encontrei duas falhas na primeira versão do avaliador automático, a que rodou no Colab:
 
@@ -262,14 +273,14 @@ As falhas de B são as previstas para um modelo pequeno:
 
 - **Usa contexto que não responde a pergunta.** Na A18 (licença-paternidade), a busca trouxe o trecho de férias, e o modelo respondeu com as regras de férias. Na A17 (devolução de notebook), respondeu com a regra de perda de credencial.
 - **Recusa o que está no contexto.** Na A14 (híbrido na experiência), a resposta estava no trecho, e mesmo assim ele recusou.
-- **Cita a fonte de forma irregular.** Citou a fonte certa em 64% das respostas da base, e na A07 a resposta estava certa mas citou POL-08 no lugar de POL-03.
+- **Cita a fonte de forma irregular.** Citou a fonte certa em 57% das respostas da base, e na A07 a resposta estava certa mas citou POL-08 no lugar de POL-03.
 
 ### Fine-tuning com grounding (B → D): o LoRA ensina o comportamento
 
 O LoRA, treinado com os mesmos hiperparâmetros da aula em 40 exemplos, mudou o **comportamento** do modelo:
 
 - **recusa correta** nas perguntas fora da base: de 66,7% para **100%**, com zero alucinações fora da base;
-- **citação da fonte certa:** de 64,3% para **92,9%**;
+- **citação da fonte certa:** de 57,1% para **92,9%**;
 - respostas mais curtas e diretas, no formato do treino.
 
 O custo foi uma pequena queda no acerto automático das perguntas da base: de 85,7% para 78,6%, ou seja, 11 em vez de 12. Revisando as 3 respostas marcadas como incorretas em D:
@@ -393,7 +404,7 @@ assistente/
   prompts.py              estrutura de contexto: prompts de sistema, trechos, recusa
   dataset.py              gera treino.jsonl (formato chat da aula) e teste.jsonl
   avaliacao.py            classificação das respostas e métricas
-  relatorio.py            tabela comparativa e exemplos em results/relatorio.md
+  relatorio.py            relatório por critério: matriz critério × modo, revisão manual, transições
 data/
   perguntas.json          60 perguntas com gabarito (fonte e fatos), divididas em treino e teste
   treino.jsonl, teste.jsonl
@@ -406,7 +417,9 @@ results/
   avaliacao_busca.json    acerto da busca (local)
   respostas.json          as 80 respostas do Colab (20 perguntas x 4 modos) com a avaliação
   metricas.json           métricas por modo
-  relatorio.md            tabela comparativa e exemplos
+  relatorio.md            relatório detalhado por critério de avaliação (gerado)
+  revisao_manual.json     rótulo manual e justificativa de cada uma das 80 respostas
+  interpretacao.md        análise escrita, incluída no relatorio.md
   colab_original/         avaliação original do Colab, antes da correção do avaliador
 aula/                     material da aula M3D4 e o adapter de sentimento treinado em sala
 ```

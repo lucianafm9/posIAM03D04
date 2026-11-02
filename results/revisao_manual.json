@@ -1,0 +1,410 @@
+{
+  "base_sem_contexto": {
+    "A01": {
+      "rotulo": "recusa_indevida",
+      "nota": "recusa genérica: diz que não pode verificar a situação do motorista",
+      "sha1_resposta": "26e257426107c996bc0a128d59caf44df1babaf3"
+    },
+    "A02": {
+      "rotulo": "inventou",
+      "nota": "inventa a lista de documentos (carteira de trabalho, certificado de habilitação)",
+      "sha1_resposta": "fbb1609aaa5ee0f9f678481f8062cedbcb28514a"
+    },
+    "A03": {
+      "rotulo": "inventou",
+      "nota": "inventa um processo de reprogramação; não cita o bloqueio de 48 h",
+      "sha1_resposta": "379a84128ecb524ca64636f72b1567c093f3e8f8"
+    },
+    "A04": {
+      "rotulo": "inventou",
+      "nota": "afirma validade de 1 ano (o certo é 30 dias)",
+      "sha1_resposta": "583778d6a65356420eec5207a00e9c7e3cbd1e80"
+    },
+    "A05": {
+      "rotulo": "inventou",
+      "nota": "afirma 30 dias de antecedência (o certo é 3 dias úteis)",
+      "sha1_resposta": "24d05afd4abea26cd0529529d0f7e20fdbcf67cc"
+    },
+    "A06": {
+      "rotulo": "vaga",
+      "nota": "opinião genérica sobre segurança; não cita a regra de cancelamento",
+      "sha1_resposta": "2f080b84ed15ba6db97a807974505fbfe34292c7"
+    },
+    "A07": {
+      "rotulo": "vaga",
+      "nota": "fala de passageiros e câmeras; não responde sobre EPI",
+      "sha1_resposta": "beb487aa5b54dd5bd6629ffcff610d7237d4e2b5"
+    },
+    "A08": {
+      "rotulo": "recusa_indevida",
+      "nota": "diz não ter a informação e recomenda velocidade moderada",
+      "sha1_resposta": "e03fc70f5d1bf4a1d07fcd586a7e7f51fc853faa"
+    },
+    "A09": {
+      "rotulo": "inventou",
+      "nota": "afirma 30 a 45 dias (o certo é 5 dias)",
+      "sha1_resposta": "798934db19c1019ea891ff00ca91c1d6d5652277"
+    },
+    "A10": {
+      "rotulo": "vaga",
+      "nota": "diz que varia conforme o serviço, sem prazo",
+      "sha1_resposta": "4068d3b52ba806988e02c43d225437c35b07a7b4"
+    },
+    "A11": {
+      "rotulo": "recusa_indevida",
+      "nota": "diz não ter a informação",
+      "sha1_resposta": "38987c6d609cb2d12a698f62eba60ce40d1d28ff"
+    },
+    "A12": {
+      "rotulo": "inventou",
+      "nota": "afirma 24 horas e autorização da Autoridade Portuária (o certo é 5 dias)",
+      "sha1_resposta": "5dc62ccd825e6b816833a0bb1e432cbdc003906c"
+    },
+    "A13": {
+      "rotulo": "recusa_indevida",
+      "nota": "diz não ter a informação e fala de seguro de viagem",
+      "sha1_resposta": "d7b2c6615d487b8f9f2f0a1a0244e2ee69a5f137"
+    },
+    "A14": {
+      "rotulo": "inventou",
+      "nota": "afirma que sim (o certo é não, nos primeiros 90 dias)",
+      "sha1_resposta": "21ab8a5d29fe8b642c18e6dcba170fca7475623e"
+    },
+    "A15": {
+      "rotulo": "recusa_correta",
+      "nota": "recusa genérica",
+      "sha1_resposta": "0bc530ec108ed667763868e6d9d215ec58c87dbe"
+    },
+    "A16": {
+      "rotulo": "vaga",
+      "nota": "diz que o terminal não especifica o tamanho, sem número",
+      "sha1_resposta": "fa5db9b1a892c7698d9f49a587893c27c96a235b"
+    },
+    "A17": {
+      "rotulo": "recusa_correta",
+      "nota": "recusa genérica",
+      "sha1_resposta": "49b0ca093298449d8a9b4ca8c7bad824f0fe3055"
+    },
+    "A18": {
+      "rotulo": "inventou",
+      "nota": "inventa 15 dias de licença-paternidade",
+      "sha1_resposta": "e313bcae3f0ff5701e44d97ce1bf93ad0dccaff4"
+    },
+    "A19": {
+      "rotulo": "recusa_correta",
+      "nota": "recusa, mas sugere um site inventado (www.portoventura.pt)",
+      "sha1_resposta": "970ec047139ceed721e04a9cbb69ebbefd5e5e36"
+    },
+    "A20": {
+      "rotulo": "recusa_correta",
+      "nota": "recusa genérica",
+      "sha1_resposta": "6343e93b5f31b039b40a45771604b07acc4bb248"
+    }
+  },
+  "base_com_contexto": {
+    "A01": {
+      "rotulo": "contexto_mal_usado",
+      "nota": "contraditória: diz que o motorista pode entrar e, na mesma frase, que o agendamento foi perdido",
+      "sha1_resposta": "64c59445be76cc74400aa430e357a93c9cf9998c"
+    },
+    "A02": {
+      "rotulo": "correta",
+      "nota": "",
+      "sha1_resposta": "82fa2e917860b179d23302ad7aad4da4838cde3a"
+    },
+    "A03": {
+      "rotulo": "correta",
+      "nota": "",
+      "sha1_resposta": "9d4e58bbe1f6b010deec6d50374276a94a46a739"
+    },
+    "A04": {
+      "rotulo": "correta",
+      "nota": "",
+      "sha1_resposta": "3bfd5ba2ec2538c0bf5370624eab395bbb697be9"
+    },
+    "A05": {
+      "rotulo": "correta",
+      "nota": "",
+      "sha1_resposta": "7177f20f9d434a16676f2247e62d22622d02de0e"
+    },
+    "A06": {
+      "rotulo": "correta",
+      "nota": "",
+      "sha1_resposta": "a196eb30c698e32ff4fa466856f2898e32638e6e"
+    },
+    "A07": {
+      "rotulo": "correta",
+      "nota": "conteúdo certo, mas cita POL-08 em vez de POL-03",
+      "sha1_resposta": "55c2bcf06e76829c5888720c0b7f3e637e7d069f"
+    },
+    "A08": {
+      "rotulo": "correta",
+      "nota": "",
+      "sha1_resposta": "98e84b7d0bb2a3ab7084efd29a296f7210e4ea1a"
+    },
+    "A09": {
+      "rotulo": "correta",
+      "nota": "",
+      "sha1_resposta": "3e89fec22c26e531e79d86bc4df37550ff9ccedd"
+    },
+    "A10": {
+      "rotulo": "correta",
+      "nota": "",
+      "sha1_resposta": "46cf0bd7935a2fb58b6421a622216f0e715d6095"
+    },
+    "A11": {
+      "rotulo": "correta",
+      "nota": "",
+      "sha1_resposta": "1799fc1b75e1cf7ce2257239a6f3c82c10463446"
+    },
+    "A12": {
+      "rotulo": "correta",
+      "nota": "",
+      "sha1_resposta": "f07af50b6799297dcb20f9923c2fa66c660885d8"
+    },
+    "A13": {
+      "rotulo": "correta",
+      "nota": "",
+      "sha1_resposta": "c0634a9317d600ef5f94276726e9eba0c81075e0"
+    },
+    "A14": {
+      "rotulo": "recusa_indevida",
+      "nota": "o trecho com os 90 dias estava no contexto e o modelo recusou",
+      "sha1_resposta": "869acff5cfa0df8d5afbb5d937b6843fb46ab73f"
+    },
+    "A15": {
+      "rotulo": "recusa_correta",
+      "nota": "frase padrão, com fonte espúria POL-XX",
+      "sha1_resposta": "9e1e716717f6d35bccd265a3aaa8fac6f2f26aac"
+    },
+    "A16": {
+      "rotulo": "recusa_correta",
+      "nota": "frase padrão, com fonte espúria POL-04",
+      "sha1_resposta": "7cd673098e9c7c625a8812d36bc846228d9e2ec0"
+    },
+    "A17": {
+      "rotulo": "contexto_mal_usado",
+      "nota": "responde com a regra de perda de credencial (POL-02), que não tem relação com a pergunta",
+      "sha1_resposta": "314b20c3de80eee656abdfcae6f8c423807929d2"
+    },
+    "A18": {
+      "rotulo": "contexto_mal_usado",
+      "nota": "responde com as regras de férias (POL-08), que não falam de licença-paternidade",
+      "sha1_resposta": "765c91fe6ba8019240b2e2be58d69c3b4ad2e847"
+    },
+    "A19": {
+      "rotulo": "recusa_correta",
+      "nota": "frase padrão, com fonte espúria POL-XX",
+      "sha1_resposta": "9e1e716717f6d35bccd265a3aaa8fac6f2f26aac"
+    },
+    "A20": {
+      "rotulo": "recusa_correta",
+      "nota": "frase padrão, com fonte espúria POL-01",
+      "sha1_resposta": "d8b54398c060f97284254b361fd31a00cee75382"
+    }
+  },
+  "lora_sem_contexto": {
+    "A01": {
+      "rotulo": "parcial",
+      "nota": "conclusão certa (não pode entrar), sem a regra dos 30 minutos",
+      "sha1_resposta": "ed8ea2d109bb53d5afcf4a7f5f6278874056e527"
+    },
+    "A02": {
+      "rotulo": "inventou",
+      "nota": "acerta a CNH, mas inventa comprovantes de multa e de seguros",
+      "sha1_resposta": "6c53b3364d335aa0afabbf821daacf4cb3fccba2"
+    },
+    "A03": {
+      "rotulo": "inventou",
+      "nota": "inventa cancelamento automático; não cita o bloqueio de 48 h",
+      "sha1_resposta": "a3f735fc0a26bf93aab799f03f3fc2d8a3446441"
+    },
+    "A04": {
+      "rotulo": "inventou",
+      "nota": "inventa validade de 1 ano e custo de R$ 20,00 no Rio Grande do Sul",
+      "sha1_resposta": "3ebd6a646a6eb7d66ea17b0f50580851e46f66f1"
+    },
+    "A05": {
+      "rotulo": "inventou",
+      "nota": "inventa \"no dia anterior ao embarque\"",
+      "sha1_resposta": "386cb36554454646d72dc47508fa036f2e814af3"
+    },
+    "A06": {
+      "rotulo": "inventou",
+      "nota": "afirma que não haverá nenhuma alteração (o certo é cancelamento imediato)",
+      "sha1_resposta": "9e1122723f095cd8a9a2c0475685efe31451700b"
+    },
+    "A07": {
+      "rotulo": "vaga",
+      "nota": "fala de passageiros e câmeras; não responde sobre EPI",
+      "sha1_resposta": "cc454429b62a283ee58513105cb5dff15941f4e3"
+    },
+    "A08": {
+      "rotulo": "recusa_indevida",
+      "nota": "diz não ter a informação",
+      "sha1_resposta": "a9d4d9ebe997ff14a56da35ad20cebb9d5c3e923"
+    },
+    "A09": {
+      "rotulo": "inventou",
+      "nota": "afirma 30 dias (o certo é 5 dias)",
+      "sha1_resposta": "fff2f2fad7c616a2d177954cef55c4630df87e32"
+    },
+    "A10": {
+      "rotulo": "inventou",
+      "nota": "afirma até 30 dias corridos (o certo é 15 dias)",
+      "sha1_resposta": "91d66c3134c2b061c359ddf159cd39d30797c12c"
+    },
+    "A11": {
+      "rotulo": "inventou",
+      "nota": "afirma 24 horas (o certo é 2 horas)",
+      "sha1_resposta": "c9567bf05d301670bbf1984d214655bdcead9430"
+    },
+    "A12": {
+      "rotulo": "inventou",
+      "nota": "afirma 24 horas (o certo é 5 dias)",
+      "sha1_resposta": "41fd4660d2bdc6793e76c61279cbfe4c39dbc452"
+    },
+    "A13": {
+      "rotulo": "recusa_indevida",
+      "nota": "diz não ter a informação, mas inventa o telefone 150 e um site",
+      "sha1_resposta": "6d8d2a7567dcdf20d549d7e3bb18ad9007f547d2"
+    },
+    "A14": {
+      "rotulo": "parcial",
+      "nota": "conclusão certa (não), com justificativa inventada e sem os 90 dias",
+      "sha1_resposta": "4c43f197babe5991766c146f9d867c8ef9cd0547"
+    },
+    "A15": {
+      "rotulo": "recusa_correta",
+      "nota": "recusa genérica",
+      "sha1_resposta": "257dd88b5a2e88154274558f7240fd1aa1ce67d7"
+    },
+    "A16": {
+      "rotulo": "inventou",
+      "nota": "inventa navios de 105 a 120 metros",
+      "sha1_resposta": "fd7f28ca3f3f926fb4ca6d6f899839f250804271"
+    },
+    "A17": {
+      "rotulo": "recusa_correta",
+      "nota": "recusa genérica",
+      "sha1_resposta": "118e0e76a45b8c513ced63dea4f58f4ff2f663fe"
+    },
+    "A18": {
+      "rotulo": "inventou",
+      "nota": "inventa 15 dias de licença-paternidade",
+      "sha1_resposta": "3924b3f103804eb1b03080acef76c5fc4ce54a47"
+    },
+    "A19": {
+      "rotulo": "inventou",
+      "nota": "inventa o telefone 0800 721 3456",
+      "sha1_resposta": "e472f34acd0f4e80d4571e1620b2ba6348a1e807"
+    },
+    "A20": {
+      "rotulo": "vaga",
+      "nota": "diz que o valor varia, sem número",
+      "sha1_resposta": "8975a30bf03ca3f17d43d70d632fe1162ee34003"
+    }
+  },
+  "lora_com_contexto": {
+    "A01": {
+      "rotulo": "correta_equivalente",
+      "nota": "\"Não, ele já foi considerado perdido. Precisa fazer um novo agendamento\": regra certa, sem citar os 30 minutos",
+      "sha1_resposta": "c3e6e01a8c7c01d53f42fe874344c674faea51ed"
+    },
+    "A02": {
+      "rotulo": "correta",
+      "nota": "",
+      "sha1_resposta": "9e8e58c126067888c98d73d488747bdece53771f"
+    },
+    "A03": {
+      "rotulo": "correta",
+      "nota": "",
+      "sha1_resposta": "cf01606fdc2bbd93826ac5eb7debcc0f3e8acb2b"
+    },
+    "A04": {
+      "rotulo": "correta_equivalente",
+      "nota": "\"1 mês\" equivale aos 30 dias do documento",
+      "sha1_resposta": "983e19c0a9bc9592ff7a71f5df1e08a03288cc0e"
+    },
+    "A05": {
+      "rotulo": "correta",
+      "nota": "",
+      "sha1_resposta": "6ef36757a4f8c1910b8e4d5bc5a14488c08600bb"
+    },
+    "A06": {
+      "rotulo": "correta",
+      "nota": "",
+      "sha1_resposta": "55c444e427ba5f63d98291ae119a8ce44888f490"
+    },
+    "A07": {
+      "rotulo": "contexto_mal_usado",
+      "nota": "lista o EPI geral do pátio; a pergunta era sobre o protetor auricular exigido no cais",
+      "sha1_resposta": "608b4531818284e645cb4cf38d1a2915fa059ae6"
+    },
+    "A08": {
+      "rotulo": "correta",
+      "nota": "",
+      "sha1_resposta": "32e02499eb206a1e8573e656a520dc5083fd1d84"
+    },
+    "A09": {
+      "rotulo": "correta",
+      "nota": "conteúdo certo, sem citar a fonte",
+      "sha1_resposta": "3e89fec22c26e531e79d86bc4df37550ff9ccedd"
+    },
+    "A10": {
+      "rotulo": "correta",
+      "nota": "",
+      "sha1_resposta": "46cf0bd7935a2fb58b6421a622216f0e715d6095"
+    },
+    "A11": {
+      "rotulo": "correta",
+      "nota": "",
+      "sha1_resposta": "637aab0579fbf18f276352163ffac0320fc6e5ba"
+    },
+    "A12": {
+      "rotulo": "correta",
+      "nota": "",
+      "sha1_resposta": "d0dc8ac16ad30ca0b193480ea2b0e1f17d4074a9"
+    },
+    "A13": {
+      "rotulo": "correta",
+      "nota": "",
+      "sha1_resposta": "baefb2072f7260d447c4a3a507bba0bce10c979b"
+    },
+    "A14": {
+      "rotulo": "correta",
+      "nota": "",
+      "sha1_resposta": "9f59b27d7c36f6cef437b13344985397e15c93f5"
+    },
+    "A15": {
+      "rotulo": "recusa_correta",
+      "nota": "frase padrão, com fonte espúria POL-XX",
+      "sha1_resposta": "9e1e716717f6d35bccd265a3aaa8fac6f2f26aac"
+    },
+    "A16": {
+      "rotulo": "recusa_correta",
+      "nota": "frase padrão, com fonte espúria POL-01",
+      "sha1_resposta": "d8b54398c060f97284254b361fd31a00cee75382"
+    },
+    "A17": {
+      "rotulo": "recusa_correta",
+      "nota": "frase padrão, com fonte espúria POL-08",
+      "sha1_resposta": "869acff5cfa0df8d5afbb5d937b6843fb46ab73f"
+    },
+    "A18": {
+      "rotulo": "recusa_correta",
+      "nota": "frase padrão, com fonte espúria POL-XX",
+      "sha1_resposta": "9e1e716717f6d35bccd265a3aaa8fac6f2f26aac"
+    },
+    "A19": {
+      "rotulo": "recusa_correta",
+      "nota": "frase padrão, com fonte espúria ADM-05 (documento inexistente)",
+      "sha1_resposta": "02bf31a9955ffaf8db7cd992f0444c635726eb47"
+    },
+    "A20": {
+      "rotulo": "recusa_correta",
+      "nota": "frase padrão, com fonte espúria POL-05",
+      "sha1_resposta": "66fdc401f582b9f554566645320b7156f4396991"
+    }
+  }
+}

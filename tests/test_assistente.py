@@ -98,5 +98,29 @@ class TestAvaliacao(unittest.TestCase):
         self.assertEqual(r["cita_fonte"], 100.0)
 
 
+class TestRelatorio(unittest.TestCase):
+    def test_relatorio_tem_matriz_por_criterio_e_revisao_manual(self):
+        import tempfile, shutil
+        from assistente.relatorio import PASTA_RESULTS, gerar_relatorio
+        with tempfile.TemporaryDirectory() as tmp:
+            for nome in ("respostas.json", "revisao_manual.json", "interpretacao.md"):
+                shutil.copy(PASTA_RESULTS / nome, tmp)
+            texto = gerar_relatorio(Path(tmp))
+        for trecho in ("1. Respostas baseadas na fonte", "2. Redução de alucinação", "3. Relevância e precisão",
+                       "4. Uso correto do contexto", "Inventou informação", "O que mudou entre os modos"):
+            self.assertIn(trecho, texto)
+
+    def test_revisao_manual_ignorada_se_respostas_mudarem(self):
+        import json, tempfile, shutil
+        from assistente.relatorio import PASTA_RESULTS, gerar_relatorio
+        with tempfile.TemporaryDirectory() as tmp:
+            shutil.copy(PASTA_RESULTS / "revisao_manual.json", tmp)
+            respostas = json.loads((PASTA_RESULTS / "respostas.json").read_text(encoding="utf-8"))
+            respostas["base_sem_contexto"][0]["resposta"] = "outra resposta"
+            Path(tmp, "respostas.json").write_text(json.dumps(respostas), encoding="utf-8")
+            texto = gerar_relatorio(Path(tmp))
+        self.assertNotIn("Inventou informação", texto)
+
+
 if __name__ == "__main__":
     unittest.main()

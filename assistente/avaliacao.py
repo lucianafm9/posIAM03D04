@@ -69,5 +69,7 @@ def resumir(avaliacoes: list[dict], casos: list[dict]) -> dict:
         "recusa_correta_fora_base": pct(cont["recusa_correta"], len(fora)),
         # alucinação: inventou resposta para pergunta fora da base ou respondeu sem nenhum fato correto
         "taxa_alucinacao": pct(cont["alucinacao"] + cont["incorreta"], n),
-        "cita_fonte": pct(sum(bool(a["cita_fonte"]) for a in na_base), len(na_base)),
+        # recusa com fonte anexada não conta como citação
+        "cita_fonte": pct(sum(bool(a["cita_fonte"]) and a["categoria"] != "recusa_indevida" for a in na_base),
+                          len(na_base)),
     }
