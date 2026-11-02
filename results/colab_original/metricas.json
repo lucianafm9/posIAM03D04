@@ -1,0 +1,70 @@
+{
+  "base_sem_contexto": {
+    "total": 20,
+    "contagem": {
+      "correta": 1,
+      "incompleta": 0,
+      "incorreta": 13,
+      "recusa_indevida": 0,
+      "recusa_correta": 0,
+      "alucinacao": 6
+    },
+    "acerto_geral": 5.0,
+    "acerto_na_base": 7.1,
+    "fatos_cobertos": 5.9,
+    "recusa_correta_fora_base": 0.0,
+    "taxa_alucinacao": 95.0,
+    "cita_fonte": 0.0
+  },
+  "base_com_contexto": {
+    "total": 20,
+    "contagem": {
+      "correta": 12,
+      "incompleta": 0,
+      "incorreta": 1,
+      "recusa_indevida": 1,
+      "recusa_correta": 4,
+      "alucinacao": 2
+    },
+    "acerto_geral": 80.0,
+    "acerto_na_base": 85.7,
+    "fatos_cobertos": 88.2,
+    "recusa_correta_fora_base": 66.7,
+    "taxa_alucinacao": 15.0,
+    "cita_fonte": 64.3
+  },
+  "lora_sem_contexto": {
+    "total": 20,
+    "contagem": {
+      "correta": 0,
+      "incompleta": 1,
+      "incorreta": 13,
+      "recusa_indevida": 0,
+      "recusa_correta": 0,
+      "alucinacao": 6
+    },
+    "acerto_geral": 0.0,
+    "acerto_na_base": 0.0,
+    "fatos_cobertos": 5.9,
+    "recusa_correta_fora_base": 0.0,
+    "taxa_alucinacao": 95.0,
+    "cita_fonte": 0.0
+  },
+  "lora_com_contexto": {
+    "total": 20,
+    "contagem": {
+      "correta": 11,
+      "incompleta": 0,
+      "incorreta": 3,
+      "recusa_indevida": 0,
+      "recusa_correta": 6,
+      "alucinacao": 0
+    },
+    "acerto_geral": 85.0,
+    "acerto_na_base": 78.6,
+    "fatos_cobertos": 82.4,
+    "recusa_correta_fora_base": 100.0,
+    "taxa_alucinacao": 15.0,
+    "cita_fonte": 92.9
+  }
+}

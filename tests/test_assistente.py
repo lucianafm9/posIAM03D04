@@ -81,7 +81,13 @@ class TestAvaliacao(unittest.TestCase):
 
     def test_detecta_recusa_com_variacoes(self):
         self.assertTrue(e_recusa("Desculpe, não encontrei essa informação na base."))
+        self.assertTrue(e_recusa("Desculpe, mas não tenho informações sobre o auxílio-creche."))
         self.assertFalse(e_recusa("A tolerância é de 30 minutos."))
+
+    def test_fato_por_palavra_inteira(self):
+        caso = {"fonte": "POL-04", "fatos": ["5 dias|cinco dias"]}
+        self.assertEqual(avaliar("O free time é de 30 a 45 dias.", caso)["categoria"], "incorreta")
+        self.assertEqual(avaliar("São 5 dias corridos. [Fonte: POL-04]", caso)["categoria"], "correta")
 
     def test_resumo(self):
         casos = [self.caso_base, self.caso_fora]

@@ -7,15 +7,23 @@ from .texto import normalizar
 CATEGORIAS = ["correta", "incompleta", "incorreta", "recusa_indevida", "recusa_correta", "alucinacao"]
 
 
+# A frase padrão de recusa (modos com contexto) e as recusas genéricas do modelo sem contexto,
+# como "não tenho informações sobre isso": dizer que não sabe não é alucinação
+PADROES_RECUSA = ("nao encontrei essa informacao", "nao encontrei a informacao", "nao consta na base",
+                  "nao esta no contexto", "nao tenho informac", "nao possuo informac",
+                  "nao posso fornecer informac", "nao tenho acesso")
+
+
 def e_recusa(resposta: str) -> bool:
     r = normalizar(resposta)
-    return any(p in r for p in ("nao encontrei essa informacao", "nao encontrei a informacao",
-                                "nao consta na base", "nao esta no contexto"))
+    return any(p in r for p in PADROES_RECUSA)
 
 
 def fato_presente(fato: str, resposta_norm: str) -> bool:
-    """Um fato pode ter variações separadas por '|', ex.: '30 minutos|meia hora'."""
-    return any(normalizar(v) in resposta_norm for v in fato.split("|"))
+    """Um fato pode ter variações separadas por '|', ex.: '30 minutos|meia hora'.
+    A comparação é por palavra inteira: '5 dias' não casa com '45 dias'."""
+    return any(re.search(rf"(?<!\w){re.escape(normalizar(v))}(?!\w)", resposta_norm)
+               for v in fato.split("|"))
 
 
 def cita_fonte(resposta: str, fonte: str) -> bool:

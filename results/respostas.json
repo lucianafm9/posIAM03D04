@@ -1,0 +1,970 @@
+{
+  "base_sem_contexto": [
+    {
+      "id": "A01",
+      "pergunta": "Meu motorista chegou 40 minutos depois do fim da janela. Ele ainda pode entrar?",
+      "fonte": "POL-01",
+      "resposta": "Desculpe, mas não posso fornecer informações sobre a situação do seu motorista ou verificar se ele pode entrar no terminal. Por favor, entre em contato diretamente com o seu motorista para obter mais detalhes. Se precisar de ajuda, você pode ligar para o nosso serviço de suporte ao cliente.",
+      "avaliacao": {
+        "categoria": "recusa_indevida",
+        "fatos_ok": 0,
+        "fatos_total": 1,
+        "cita_fonte": false
+      }
+    },
+    {
+      "id": "A02",
+      "pergunta": "Quais documentos o motorista apresenta na chegada ao gate?",
+      "fonte": "POL-01",
+      "resposta": "No Porto Ventura Terminais, os motoristas apresentam geralmente os seguintes documentos para a entrada no terminal:\n\n1. Cartão de motorista (se for uma empresa que opera com carteira assinada)\n2. Carteira de trabalho (se for uma pessoa individual)\n3. Documento de identidade\n4. Certificado de habilitação (para veículos automotores)\n\nÉ importante verificar as especificidades da sua operação e protocolos específicos do seu terminal, pois podem variar ligeiramente dependendo do tipo de serviço ou do local onde você está trabalhando.",
+      "avaliacao": {
+        "categoria": "incorreta",
+        "fatos_ok": 0,
+        "fatos_total": 3,
+        "cita_fonte": false
+      }
+    },
+    {
+      "id": "A03",
+      "pergunta": "O que acontece com a transportadora que falta aos agendamentos sem cancelar?",
+      "fonte": "POL-01",
+      "resposta": "No Porto Ventura Terminais, quando uma transportadora não pode realizar um agendamento, geralmente ocorre uma situação de sobrecarga na área de operações. Para resolver isso, os seguintes passos são realizados:\n\n1. **Reposição da Transportadora**: A transportadora que estava programada para realizar o agendamento é reprogramada para outro dia ou horário.\n\n2. **Cancelamento do Agendamento**: O agendamento original é cancelado e não será realizado no dia previsto.\n\n3. **Aguarda Reativação**: Se a transportadora estiver disponível novamente, ela pode ser reprogramada para substituir a outra transportadora.\n\n4. **Monitoramento Continuo**: As oper",
+      "avaliacao": {
+        "categoria": "incorreta",
+        "fatos_ok": 0,
+        "fatos_total": 2,
+        "cita_fonte": false
+      }
+    },
+    {
+      "id": "A04",
+      "pergunta": "Quanto tempo vale uma credencial temporária de prestador?",
+      "fonte": "POL-02",
+      "resposta": "Acredito que tenha confundido com a \"credencial temporária de prestador\", pois não existe essa categoria específica no sistema de credenciamento do Porto Ventura Terminais. Acredito que você esteja se referindo à \"credencial temporária\". \n\nSe está se referindo à credencial temporária para trabalhar na área de operações ou manutenção, geralmente ela tem validade por 1 ano. Se estiver se referindo à credencial temporária para outros cargos, como gerentes ou supervisores, a validade pode variar dependendo da função e das necessidades do cargo.\n\nPara obter informações mais precisas sobre a validade exata de sua credencial temporária",
+      "avaliacao": {
+        "categoria": "incorreta",
+        "fatos_ok": 0,
+        "fatos_total": 1,
+        "cita_fonte": false
+      }
+    },
+    {
+      "id": "A05",
+      "pergunta": "Com quantos dias de antecedência o gestor deve pedir a credencial de um terceirizado?",
+      "fonte": "POL-02",
+      "resposta": "O gestor deve solicitar a credencial para um terceirizado no Porto Ventura Terminais com pelo menos 30 dias de antecedência. Isso garante que todos os procedimentos e documentações necessárias sejam concluídos antes da chegada do terceiro.",
+      "avaliacao": {
+        "categoria": "incorreta",
+        "fatos_ok": 0,
+        "fatos_total": 1,
+        "cita_fonte": false
+      }
+    },
+    {
+      "id": "A06",
+      "pergunta": "O que acontece se eu emprestar minha credencial para um colega?",
+      "fonte": "POL-02",
+      "resposta": "Se você empresta sua credencial para outro funcionário no Porto Ventura Terminais, deve ser cuidadosamente considerado. Acreditei que acredito que isso não seja uma boa ideia. O uso da credencial pode representar acesso privilegiado aos recursos e informações do sistema, podendo levar a problemas de segurança ou até mesmo à perda de privacidade. Além disso, acredito que essa prática possa ser considerada como desrespeitosa ao trabalho compartilhado. Se você tem alguma preocupação com relação a segurança ou privacidade, sugiro que converse com seu gerente de segurança ou equipe de compliance para discutir melhor as melhores práticas de segurança",
+      "avaliacao": {
+        "categoria": "incorreta",
+        "fatos_ok": 0,
+        "fatos_total": 1,
+        "cita_fonte": false
+      }
+    },
+    {
+      "id": "A07",
+      "pergunta": "Que proteção extra é exigida no cais durante o embarque?",
+      "fonte": "POL-03",
+      "resposta": "Durante o embarque, a segurança e a integridade do passageiro são prioridades. O cais geralmente oferece uma área segura para os passageiros, com equipamentos de segurança como câmeras de vigilância e alarmes. Além disso, muitos terminais têm sistemas de controle de acesso que garantem que apenas pessoas autorizadas possam entrar na área do cais. No entanto, as medidas específicas podem variar dependendo da localização do terminal e das normas locais de segurança.",
+      "avaliacao": {
+        "categoria": "incorreta",
+        "fatos_ok": 0,
+        "fatos_total": 1,
+        "cita_fonte": false
+      }
+    },
+    {
+      "id": "A08",
+      "pergunta": "Qual o limite de velocidade dentro dos armazéns?",
+      "fonte": "POL-03",
+      "resposta": "Não tenho informações específicas sobre a velocidade máxima permitida dentro dos armazéns de um terminal portuário. A recomendação geralmente é manter uma velocidade moderada para evitar acidentes e garantir segurança. No entanto, as normas exatas podem variar dependendo da legislação local e das especificidades do seu terminal. Recomendo que você consulte os regulamentos específicos do seu terminal ou peça orientações ao pessoal de segurança.",
+      "avaliacao": {
+        "categoria": "recusa_indevida",
+        "fatos_ok": 0,
+        "fatos_total": 1,
+        "cita_fonte": false
+      }
+    },
+    {
+      "id": "A09",
+      "pergunta": "Quantos dias de free time tem um contêiner de exportação?",
+      "fonte": "POL-04",
+      "resposta": "Um contêiner de exportação geralmente possui uma duração de 30 a 45 dias para ser liberado após a sua chegada ao terminal. Este período pode variar dependendo da demanda e das operações no terminal. A liberação exata varia entre os diferentes terminais portuários.",
+      "avaliacao": {
+        "categoria": "incorreta",
+        "fatos_ok": 0,
+        "fatos_total": 1,
+        "cita_fonte": false
+      }
+    },
+    {
+      "id": "A10",
+      "pergunta": "Cliente com crédito aprovado tem quanto tempo para pagar a armazenagem?",
+      "fonte": "POL-04",
+      "resposta": "O tempo máximo para pagamento da armazenagem varia dependendo do tipo de serviço contratado e das condições especiais estabelecidas pelo cliente. Por exemplo, serviços como armazenamento por conta própria podem ter prazos mais curtos, enquanto outros tipos de serviços podem ter prazos maiores.\n\nPara obter informações precisas sobre seu caso específico, seria útil consultar diretamente o departamento de atendimento ao cliente ou o gerente de armazenamento do Porto Ventura Terminais. Eles poderiam fornecer uma resposta mais precisa baseada nas suas especificidades.",
+      "avaliacao": {
+        "categoria": "incorreta",
+        "fatos_ok": 0,
+        "fatos_total": 1,
+        "cita_fonte": false
+      }
+    },
+    {
+      "id": "A11",
+      "pergunta": "Qual o prazo para concluir o registro de uma avaria no sistema?",
+      "fonte": "POL-05",
+      "resposta": "Peço desculpas pela confusão, mas como assistente interno do Porto Ventura Terminais, não tenho informações sobre prazos específicos relacionados ao registro de avarias nos sistemas. Para obter essa informação precisa, seria necessário consultar diretamente os serviços de manutenção ou gerenciamento de incidentes do nosso sistema.",
+      "avaliacao": {
+        "categoria": "recusa_indevida",
+        "fatos_ok": 0,
+        "fatos_total": 1,
+        "cita_fonte": false
+      }
+    },
+    {
+      "id": "A12",
+      "pergunta": "Por quanto tempo uma carga perigosa pode ficar no pátio IMO?",
+      "fonte": "POL-06",
+      "resposta": "A carga perigosa não pode permanecer no pátio IMO por mais de 24 horas sem a autorização da Autoridade Portuária. Após esse período, deve ser removida para evitar riscos à segurança e saúde dos trabalhadores. A Autoridade Portuária tem as responsabilidades de monitorar e controlar os prontos-móveis (PMS) para garantir que todos os procedimentos estabelecidos sejam cumpridos.",
+      "avaliacao": {
+        "categoria": "incorreta",
+        "fatos_ok": 0,
+        "fatos_total": 1,
+        "cita_fonte": false
+      }
+    },
+    {
+      "id": "A13",
+      "pergunta": "Qual o prazo para pedir o reembolso depois que volto de viagem?",
+      "fonte": "POL-07",
+      "resposta": "Desculpe, mas como assistente do Porto Ventura Terminais, não tenho informações específicas sobre prazos para solicitar reembolsos após a conclusão da operação. O processo pode variar dependendo das políticas internas do seu destino e também das condições do seu seguro de viagem. Recomendo que você verifique as instruções no seu seguro ou entre em contato com o seu agente de viagens para obter mais detalhes.",
+      "avaliacao": {
+        "categoria": "recusa_indevida",
+        "fatos_ok": 0,
+        "fatos_total": 1,
+        "cita_fonte": false
+      }
+    },
+    {
+      "id": "A14",
+      "pergunta": "Funcionário em período de experiência pode fazer trabalho híbrido?",
+      "fonte": "POL-08",
+      "resposta": "Sim, os funcionários podem realizar seu trabalho em um ambiente híbrido, combinando a presença física no local com atividades remotas ou online. Isso pode incluir aulas virtuais, consultas remotas, e até mesmo algumas tarefas que não exigem contato direto com o pessoal do estabelecimento. No entanto, a natureza exata desses trabalhos depende da função específica do cargo.",
+      "avaliacao": {
+        "categoria": "incorreta",
+        "fatos_ok": 0,
+        "fatos_total": 1,
+        "cita_fonte": false
+      }
+    },
+    {
+      "id": "A15",
+      "pergunta": "Qual o valor do auxílio-creche pago pela empresa?",
+      "fonte": null,
+      "resposta": "Desculpe, mas não tenho informações específicas sobre o valor do auxílio-criança no Porto Ventura Terminais. O melhor modo de obter essa informação seria por meio da própria empresa ou através de uma consulta direta ao seu departamento de recursos humanos. Se você tiver mais detalhes sobre a situação específica, como o nome da empresa ou o local onde ela está localizada, posso tentar buscar essas informações para você.",
+      "avaliacao": {
+        "categoria": "recusa_correta",
+        "fatos_ok": 0,
+        "fatos_total": 0,
+        "cita_fonte": null
+      }
+    },
+    {
+      "id": "A16",
+      "pergunta": "Qual o comprimento máximo de navio que o terminal recebe?",
+      "fonte": null,
+      "resposta": "O terminal do Porto Ventura terminais não especifica uma medida máxima para navios por razões de segurança e eficiência operacional. O tamanho exato varia dependendo da capacidade específica do terminal, a profundidade do mar local e outros fatores técnicos. Para obter informações precisas sobre as medidas máximas permitidas, seria necessário consultar diretamente com os responsáveis pelo terminal ou seu departamento de logística.",
+      "avaliacao": {
+        "categoria": "alucinacao",
+        "fatos_ok": 0,
+        "fatos_total": 0,
+        "cita_fonte": null
+      }
+    },
+    {
+      "id": "A17",
+      "pergunta": "Qual o prazo para devolver o notebook quando o empregado sai da empresa?",
+      "fonte": null,
+      "resposta": "Como assistente interno do Porto Ventura Terminais, não tenho informações específicas sobre prazos para a devolução de notebooks por empregados que saem da empresa. O prazo pode variar dependendo das políticas internas da sua empresa e também podem ser diferentes entre os diversos terminais portuários. Para obter uma resposta mais precisa, seria necessário consultar diretamente as regras da sua própria empresa ou entrar em contato com o departamento de recursos humanos.",
+      "avaliacao": {
+        "categoria": "recusa_correta",
+        "fatos_ok": 0,
+        "fatos_total": 0,
+        "cita_fonte": null
+      }
+    },
+    {
+      "id": "A18",
+      "pergunta": "Quantos dias de licença-paternidade a empresa concede?",
+      "fonte": null,
+      "resposta": "A empresa concede 15 dias de licença-paternidade para os empregados que estejam à espera da chegada de uma criança.",
+      "avaliacao": {
+        "categoria": "alucinacao",
+        "fatos_ok": 0,
+        "fatos_total": 0,
+        "cita_fonte": null
+      }
+    },
+    {
+      "id": "A19",
+      "pergunta": "Qual o telefone do despachante aduaneiro parceiro do terminal?",
+      "fonte": null,
+      "resposta": "Desculpe, mas não tenho informações sobre a localização exata ou contato específico para o despachante aduaneiro parceiro do Porto Ventura Terminais. O melhor que posso dizer é que você pode entrar em contato com eles através das seguintes opções:\n\n1. Por meio da plataforma online do Porto Ventura: geralmente há uma seção específica dedicada ao despacho aduaneiro.\n2. Acesse o site oficial do Porto Ventura (www.portoventura.pt) e procure por informações relacionadas à despacha aduaneira.\n3. Ligue diretamente para o número de telefone fornecido pelo seu despachante aduaneiro.\n\nSe você tiver mais detalhes",
+      "avaliacao": {
+        "categoria": "recusa_correta",
+        "fatos_ok": 0,
+        "fatos_total": 0,
+        "cita_fonte": null
+      }
+    },
+    {
+      "id": "A20",
+      "pergunta": "Qual o preço da pesagem avulsa de caminhão na balança?",
+      "fonte": null,
+      "resposta": "Desculpe, mas como assistente interno do Porto Ventura Terminais, não tenho informações sobre preços específicos para a pesagem avulsa de caminhões. O preço pode variar dependendo das condições e do tipo de serviço contratado. Para obter uma informação precisa, seria necessário entrar em contato diretamente com o seu fornecedor ou operador do Porto Ventura Terminais.",
+      "avaliacao": {
+        "categoria": "recusa_correta",
+        "fatos_ok": 0,
+        "fatos_total": 0,
+        "cita_fonte": null
+      }
+    }
+  ],
+  "base_com_contexto": [
+    {
+      "id": "A01",
+      "pergunta": "Meu motorista chegou 40 minutos depois do fim da janela. Ele ainda pode entrar?",
+      "fonte": "POL-01",
+      "resposta": "Sim, seu motorista pode entrar. No entanto, ele precisará de um novo agendamento, já que o agendamento original foi considerado perdido por excesso de tempo. [Fonte: POL-01]",
+      "avaliacao": {
+        "categoria": "incorreta",
+        "fatos_ok": 0,
+        "fatos_total": 1,
+        "cita_fonte": true
+      }
+    },
+    {
+      "id": "A02",
+      "pergunta": "Quais documentos o motorista apresenta na chegada ao gate?",
+      "fonte": "POL-01",
+      "resposta": "O motorista apresenta o número do agendamento, a CNH válida e a nota fiscal ou o documento de liberação da carga (DTA, DI ou DU-E, conforme o caso).",
+      "avaliacao": {
+        "categoria": "correta",
+        "fatos_ok": 3,
+        "fatos_total": 3,
+        "cita_fonte": false
+      }
+    },
+    {
+      "id": "A03",
+      "pergunta": "O que acontece com a transportadora que falta aos agendamentos sem cancelar?",
+      "fonte": "POL-01",
+      "resposta": "As transportadoras que não comparecem aos agendamentos sem cancelar geram bloqueio do terminal por 48 horas a partir da terceira ocorrência no mesmo mês. [Fonte: POL-01]",
+      "avaliacao": {
+        "categoria": "correta",
+        "fatos_ok": 2,
+        "fatos_total": 2,
+        "cita_fonte": true
+      }
+    },
+    {
+      "id": "A04",
+      "pergunta": "Quanto tempo vale uma credencial temporária de prestador?",
+      "fonte": "POL-02",
+      "resposta": "Acredita-se que a validade máxima de uma credencial temporária seja de 30 dias. [Fonte: POL-02]",
+      "avaliacao": {
+        "categoria": "correta",
+        "fatos_ok": 1,
+        "fatos_total": 1,
+        "cita_fonte": true
+      }
+    },
+    {
+      "id": "A05",
+      "pergunta": "Com quantos dias de antecedência o gestor deve pedir a credencial de um terceirizado?",
+      "fonte": "POL-02",
+      "resposta": "Deve ser solicitada pelo gestor do contrato no Sistema de Credenciamento, com no mínimo 3 dias úteis de antecedência.",
+      "avaliacao": {
+        "categoria": "correta",
+        "fatos_ok": 1,
+        "fatos_total": 1,
+        "cita_fonte": false
+      }
+    },
+    {
+      "id": "A06",
+      "pergunta": "O que acontece se eu emprestar minha credencial para um colega?",
+      "fonte": "POL-02",
+      "resposta": "Falta grave e cancelamento imediato do acesso. [Fonte: POL-02]",
+      "avaliacao": {
+        "categoria": "correta",
+        "fatos_ok": 1,
+        "fatos_total": 1,
+        "cita_fonte": true
+      }
+    },
+    {
+      "id": "A07",
+      "pergunta": "Que proteção extra é exigida no cais durante o embarque?",
+      "fonte": "POL-03",
+      "resposta": "É obrigatório o protetor auricular no cais durante os operações de embarque. [Fonte: POL-08]",
+      "avaliacao": {
+        "categoria": "correta",
+        "fatos_ok": 1,
+        "fatos_total": 1,
+        "cita_fonte": false
+      }
+    },
+    {
+      "id": "A08",
+      "pergunta": "Qual o limite de velocidade dentro dos armazéns?",
+      "fonte": "POL-03",
+      "resposta": "10 km/h.",
+      "avaliacao": {
+        "categoria": "correta",
+        "fatos_ok": 1,
+        "fatos_total": 1,
+        "cita_fonte": false
+      }
+    },
+    {
+      "id": "A09",
+      "pergunta": "Quantos dias de free time tem um contêiner de exportação?",
+      "fonte": "POL-04",
+      "resposta": "5 dias corridos sem cobrança antes da data prevista de atracação do navio.",
+      "avaliacao": {
+        "categoria": "correta",
+        "fatos_ok": 1,
+        "fatos_total": 1,
+        "cita_fonte": false
+      }
+    },
+    {
+      "id": "A10",
+      "pergunta": "Cliente com crédito aprovado tem quanto tempo para pagar a armazenagem?",
+      "fonte": "POL-04",
+      "resposta": "15 dias. [Fonte: POL-04]",
+      "avaliacao": {
+        "categoria": "correta",
+        "fatos_ok": 1,
+        "fatos_total": 1,
+        "cita_fonte": true
+      }
+    },
+    {
+      "id": "A11",
+      "pergunta": "Qual o prazo para concluir o registro de uma avaria no sistema?",
+      "fonte": "POL-05",
+      "resposta": "2 horas após a identificação. [Fonte: POL-05]",
+      "avaliacao": {
+        "categoria": "correta",
+        "fatos_ok": 1,
+        "fatos_total": 1,
+        "cita_fonte": true
+      }
+    },
+    {
+      "id": "A12",
+      "pergunta": "Por quanto tempo uma carga perigosa pode ficar no pátio IMO?",
+      "fonte": "POL-06",
+      "resposta": "De acordo com a política interna [POL-06 — Recebimento e armazenagem de cargas perigosas — Armazenagem], a carga perigosa fica no pátio IMO até 5 dias corridos após sua entrada. Após esse período, o cliente será notificado para retirar a carga imediatamente. [Fonte: POL-06]",
+      "avaliacao": {
+        "categoria": "correta",
+        "fatos_ok": 1,
+        "fatos_total": 1,
+        "cita_fonte": true
+      }
+    },
+    {
+      "id": "A13",
+      "pergunta": "Qual o prazo para pedir o reembolso depois que volto de viagem?",
+      "fonte": "POL-07",
+      "resposta": "Deve ser feito no Portal do Colaborador em até 10 dias corridos após o retorno da viagem, com os comprovantes fiscais digitais. Recibos simples não são aceitos. O reembolso aprovado é pago no próximo dia 15 ou dia 30, o que vier primeiro após a aprovação do gestor. [Fonte: POL-07]",
+      "avaliacao": {
+        "categoria": "correta",
+        "fatos_ok": 1,
+        "fatos_total": 1,
+        "cita_fonte": true
+      }
+    },
+    {
+      "id": "A14",
+      "pergunta": "Funcionário em período de experiência pode fazer trabalho híbrido?",
+      "fonte": "POL-08",
+      "resposta": "Não encontrei essa informação na base de conhecimento. Procure a área responsável pelo assunto. [Fonte: POL-08]",
+      "avaliacao": {
+        "categoria": "recusa_indevida",
+        "fatos_ok": 0,
+        "fatos_total": 1,
+        "cita_fonte": true
+      }
+    },
+    {
+      "id": "A15",
+      "pergunta": "Qual o valor do auxílio-creche pago pela empresa?",
+      "fonte": null,
+      "resposta": "Não encontrei essa informação na base de conhecimento. Procure a área responsável pelo assunto. [Fonte: POL-XX]",
+      "avaliacao": {
+        "categoria": "recusa_correta",
+        "fatos_ok": 0,
+        "fatos_total": 0,
+        "cita_fonte": null
+      }
+    },
+    {
+      "id": "A16",
+      "pergunta": "Qual o comprimento máximo de navio que o terminal recebe?",
+      "fonte": null,
+      "resposta": "Não encontrei essa informação na base de conhecimento. Procure a área responsável pelo assunto. [Fonte: POL-04]",
+      "avaliacao": {
+        "categoria": "recusa_correta",
+        "fatos_ok": 0,
+        "fatos_total": 0,
+        "cita_fonte": null
+      }
+    },
+    {
+      "id": "A17",
+      "pergunta": "Qual o prazo para devolver o notebook quando o empregado sai da empresa?",
+      "fonte": null,
+      "resposta": "Deve ser comunicado à Segurança Patrimonial em até 24 horas, conforme previsto na política [POL-02 — Credenciamento e controle de acesso de pessoas].",
+      "avaliacao": {
+        "categoria": "alucinacao",
+        "fatos_ok": 0,
+        "fatos_total": 0,
+        "cita_fonte": null
+      }
+    },
+    {
+      "id": "A18",
+      "pergunta": "Quantos dias de licença-paternidade a empresa concede?",
+      "fonte": null,
+      "resposta": "As férias podem ser divididas em até 3 períodos, sendo um deles de no mínimo 14 dias e os demais de no mínimo 5 dias cada. O pedido deve ser feito no Portal do Colaborador com 30 dias de antecedência. [Fonte: POL-08]",
+      "avaliacao": {
+        "categoria": "alucinacao",
+        "fatos_ok": 0,
+        "fatos_total": 0,
+        "cita_fonte": null
+      }
+    },
+    {
+      "id": "A19",
+      "pergunta": "Qual o telefone do despachante aduaneiro parceiro do terminal?",
+      "fonte": null,
+      "resposta": "Não encontrei essa informação na base de conhecimento. Procure a área responsável pelo assunto. [Fonte: POL-XX]",
+      "avaliacao": {
+        "categoria": "recusa_correta",
+        "fatos_ok": 0,
+        "fatos_total": 0,
+        "cita_fonte": null
+      }
+    },
+    {
+      "id": "A20",
+      "pergunta": "Qual o preço da pesagem avulsa de caminhão na balança?",
+      "fonte": null,
+      "resposta": "Não encontrei essa informação na base de conhecimento. Procure a área responsável pelo assunto. [Fonte: POL-01]",
+      "avaliacao": {
+        "categoria": "recusa_correta",
+        "fatos_ok": 0,
+        "fatos_total": 0,
+        "cita_fonte": null
+      }
+    }
+  ],
+  "lora_sem_contexto": [
+    {
+      "id": "A01",
+      "pergunta": "Meu motorista chegou 40 minutos depois do fim da janela. Ele ainda pode entrar?",
+      "fonte": "POL-01",
+      "resposta": "Desculpe, mas não podemos permitir que ele entre no terminal. Por favor, informe a gerência imediatamente para que possamos resolver isso.",
+      "avaliacao": {
+        "categoria": "incorreta",
+        "fatos_ok": 0,
+        "fatos_total": 1,
+        "cita_fonte": false
+      }
+    },
+    {
+      "id": "A02",
+      "pergunta": "Quais documentos o motorista apresenta na chegada ao gate?",
+      "fonte": "POL-01",
+      "resposta": "O motorista apresenta os seguintes documentos:\n\n1. Cartão de motorista (CNH)\n2. Documento de identidade\n3. Comprovante de pagamento da multa\n4. Comprovante de pagamento do seguro viagem\n5. Comprovante de pagamento do seguro rodoviário\n\nÉ importante que todos esses documentos estejam presentes para a liberação do veículo no gate. Se algum documento estiver ausente, será necessário preencher uma nova ficha de entrada e pagar as multas correspondentes.",
+      "avaliacao": {
+        "categoria": "incompleta",
+        "fatos_ok": 1,
+        "fatos_total": 3,
+        "cita_fonte": false
+      }
+    },
+    {
+      "id": "A03",
+      "pergunta": "O que acontece com a transportadora que falta aos agendamentos sem cancelar?",
+      "fonte": "POL-01",
+      "resposta": "A transportadora que não atende os agendamentos sem cancelar deve ser informada pelo gerente de operações ou pela central de agendamento. A transportadora deverá se comunicar para confirmar a data e horário da viagem e realizar as alterações necessárias no seu plano de carga. Se a transportadora não concluir as alterações dentro do prazo estipulado, o agendamento será cancelado automaticamente.",
+      "avaliacao": {
+        "categoria": "incorreta",
+        "fatos_ok": 0,
+        "fatos_total": 2,
+        "cita_fonte": false
+      }
+    },
+    {
+      "id": "A04",
+      "pergunta": "Quanto tempo vale uma credencial temporária de prestador?",
+      "fonte": "POL-02",
+      "resposta": "Acredite ou não, a resposta para essa pergunta depende da sua localização no Brasil. No Rio Grande do Sul, por exemplo, a credencial tem validade de 1 ano e custa R$20,00. Em outros estados, pode variar. Por favor, consulte as regras locais.",
+      "avaliacao": {
+        "categoria": "incorreta",
+        "fatos_ok": 0,
+        "fatos_total": 1,
+        "cita_fonte": false
+      }
+    },
+    {
+      "id": "A05",
+      "pergunta": "Com quantos dias de antecedência o gestor deve pedir a credencial de um terceirizado?",
+      "fonte": "POL-02",
+      "resposta": "O gestor deve solicitar a credencial para um terceirizado no dia anterior ao embarque. Por exemplo, se o seu embarque for na próxima semana, ele deverá solicitar a credencial no dia seguinte à data da sua chegada ao terminal.",
+      "avaliacao": {
+        "categoria": "incorreta",
+        "fatos_ok": 0,
+        "fatos_total": 1,
+        "cita_fonte": false
+      }
+    },
+    {
+      "id": "A06",
+      "pergunta": "O que acontece se eu emprestar minha credencial para um colega?",
+      "fonte": "POL-02",
+      "resposta": "Se você emprestar sua credencial para outro funcionário, não haverá nenhuma alteração na sua situação no sistema. Acredite ou não, a credencial é uma identificação única e permanece válida mesmo quando usada por outra pessoa. No entanto, é importante lembrar que esta prática pode ser considerada desonestidade e pode levar à suspensão da credencial caso seja descoberta. Portanto, evite compartilhar seu documento com pessoas não autorizadas.",
+      "avaliacao": {
+        "categoria": "incorreta",
+        "fatos_ok": 0,
+        "fatos_total": 1,
+        "cita_fonte": false
+      }
+    },
+    {
+      "id": "A07",
+      "pergunta": "Que proteção extra é exigida no cais durante o embarque?",
+      "fonte": "POL-03",
+      "resposta": "Durante o embarque, a segurança e a integridade do passageiro são prioridades. O cais tem uma área específica para este propósito chamada \"area de embarque\". Esta área está equipada com câmeras de vigilância, alarmes e outros dispositivos que garantem a segurança do passageiro enquanto ele se prepara para embarcar.\n\nAlém disso, os passageiros devem seguir as orientações dos funcionários da empresa, como não entrar na área de embarque antes de ser solicitado pela equipe de segurança ou entrar em contato com a equipe de segurança caso haja alguma situação inusitada.\n\nÉ importante ressaltar que a segurança é uma prioridade constante nas operações do terminal port",
+      "avaliacao": {
+        "categoria": "incorreta",
+        "fatos_ok": 0,
+        "fatos_total": 1,
+        "cita_fonte": false
+      }
+    },
+    {
+      "id": "A08",
+      "pergunta": "Qual o limite de velocidade dentro dos armazéns?",
+      "fonte": "POL-03",
+      "resposta": "Não tenho informações sobre a velocidade máxima permitida nos armazéns. Por favor, entre em contato com os gerentes ou operadores para obter essa informação específica.",
+      "avaliacao": {
+        "categoria": "recusa_indevida",
+        "fatos_ok": 0,
+        "fatos_total": 1,
+        "cita_fonte": false
+      }
+    },
+    {
+      "id": "A09",
+      "pergunta": "Quantos dias de free time tem um contêiner de exportação?",
+      "fonte": "POL-04",
+      "resposta": "Um contêiner de exportação geralmente possui 30 dias de free time. No entanto, isso pode variar dependendo da situação específica e das políticas do seu terminal. Por favor, consulte as regras específicas do seu terminal para obter informações mais precisas.",
+      "avaliacao": {
+        "categoria": "incorreta",
+        "fatos_ok": 0,
+        "fatos_total": 1,
+        "cita_fonte": false
+      }
+    },
+    {
+      "id": "A10",
+      "pergunta": "Cliente com crédito aprovado tem quanto tempo para pagar a armazenagem?",
+      "fonte": "POL-04",
+      "resposta": "O prazo para pagamento da armazenagem varia dependendo do tipo de serviço contratado e do valor total do contrato. Por exemplo:\n\n- Para serviços de armazenamento básico (comum), geralmente o prazo é de até 30 dias corridos.\n- Para serviços mais complexos ou de maior volume, pode haver prazos maiores.\n\nPara obter informações precisas sobre seu caso específico, recomenda-se entrar em contato diretamente com o departamento de atendimento ao cliente do Porto Ventura.",
+      "avaliacao": {
+        "categoria": "incorreta",
+        "fatos_ok": 0,
+        "fatos_total": 1,
+        "cita_fonte": false
+      }
+    },
+    {
+      "id": "A11",
+      "pergunta": "Qual o prazo para concluir o registro de uma avaria no sistema?",
+      "fonte": "POL-05",
+      "resposta": "O prazo para concluir o registro de uma avaria no sistema geralmente varia dependendo da situação e do tipo de avaria. Em geral, os registros são concluídos dentro de 24 horas após a avaria ocorrer. No entanto, se houver algum problema com a documentação ou a infraestrutura do sistema, pode levar mais tempo.\n\nPara obter informações mais precisas sobre seu caso específico, recomenda-se entrar em contato diretamente com o departamento de manutenção ou gerência de segurança do seu terminal.",
+      "avaliacao": {
+        "categoria": "incorreta",
+        "fatos_ok": 0,
+        "fatos_total": 1,
+        "cita_fonte": false
+      }
+    },
+    {
+      "id": "A12",
+      "pergunta": "Por quanto tempo uma carga perigosa pode ficar no pátio IMO?",
+      "fonte": "POL-06",
+      "resposta": "A carga perigosa não pode ficar no pátio IMO por mais de 24 horas sem a autorização da Autoridade Portuária. Após esse período, deve ser removida para evitar riscos à saúde e segurança do pessoal.",
+      "avaliacao": {
+        "categoria": "incorreta",
+        "fatos_ok": 0,
+        "fatos_total": 1,
+        "cita_fonte": false
+      }
+    },
+    {
+      "id": "A13",
+      "pergunta": "Qual o prazo para pedir o reembolso depois que volto de viagem?",
+      "fonte": "POL-07",
+      "resposta": "Peço desculpas pela confusão, mas como assistente interno do Porto Ventura Terminais, não tenho informações sobre prazos específicos para solicitar reembolsos após a conclusão da operação. Para obter essa informação, você deve entrar em contato diretamente com a nossa equipe de atendimento ao cliente através do número 150 ou pelo site www.portoventura.com.br. A equipe estará à disposição para esclarecer suas dúvidas e fornecer as informações necessárias.",
+      "avaliacao": {
+        "categoria": "recusa_indevida",
+        "fatos_ok": 0,
+        "fatos_total": 1,
+        "cita_fonte": false
+      }
+    },
+    {
+      "id": "A14",
+      "pergunta": "Funcionário em período de experiência pode fazer trabalho híbrido?",
+      "fonte": "POL-08",
+      "resposta": "Não, a experiência não permite trabalhar em horários flexíveis ou híbridos. O funcionamento no Porto Ventura terminais é rotativo e estágio dependendo da demanda.",
+      "avaliacao": {
+        "categoria": "incorreta",
+        "fatos_ok": 0,
+        "fatos_total": 1,
+        "cita_fonte": false
+      }
+    },
+    {
+      "id": "A15",
+      "pergunta": "Qual o valor do auxílio-creche pago pela empresa?",
+      "fonte": null,
+      "resposta": "Desculpe, mas não tenho informações sobre esse benefício específico. O Auxílio-Creche é uma política que cada empresa pode adotar e pagar a seus empregados conforme sua situação financeira. Se você está interessado nesse benefício, recomendo entrar em contato com a empresa para obter mais detalhes.",
+      "avaliacao": {
+        "categoria": "recusa_correta",
+        "fatos_ok": 0,
+        "fatos_total": 0,
+        "cita_fonte": null
+      }
+    },
+    {
+      "id": "A16",
+      "pergunta": "Qual o comprimento máximo de navio que o terminal recebe?",
+      "fonte": null,
+      "resposta": "O terminal do Porto Ventura termina a receber naves com comprimentos entre 105 e 120 metros.",
+      "avaliacao": {
+        "categoria": "alucinacao",
+        "fatos_ok": 0,
+        "fatos_total": 0,
+        "cita_fonte": null
+      }
+    },
+    {
+      "id": "A17",
+      "pergunta": "Qual o prazo para devolver o notebook quando o empregado sai da empresa?",
+      "fonte": null,
+      "resposta": "Desculpe, mas não tenho informações sobre esse tipo de protocolo ou prazo específico. Pode ser necessário consultar a política interna da sua empresa ou entrar em contato com o departamento de recursos humanos para obter essa informação.",
+      "avaliacao": {
+        "categoria": "recusa_correta",
+        "fatos_ok": 0,
+        "fatos_total": 0,
+        "cita_fonte": null
+      }
+    },
+    {
+      "id": "A18",
+      "pergunta": "Quantos dias de licença-paternidade a empresa concede?",
+      "fonte": null,
+      "resposta": "A empresa concedeu 15 dias de licença-paternidade para os empregados.",
+      "avaliacao": {
+        "categoria": "alucinacao",
+        "fatos_ok": 0,
+        "fatos_total": 0,
+        "cita_fonte": null
+      }
+    },
+    {
+      "id": "A19",
+      "pergunta": "Qual o telefone do despachante aduaneiro parceiro do terminal?",
+      "fonte": null,
+      "resposta": "O despachante aduaneiro parceiro do Terminal do Porto Ventura tem o número de contato 0800 721 3456.",
+      "avaliacao": {
+        "categoria": "alucinacao",
+        "fatos_ok": 0,
+        "fatos_total": 0,
+        "cita_fonte": null
+      }
+    },
+    {
+      "id": "A20",
+      "pergunta": "Qual o preço da pesagem avulsa de caminhão na balança?",
+      "fonte": null,
+      "resposta": "O valor da pesagem avulsa para caminhões está sujeito a alterações e pode variar dependendo das condições específicas do dia. Para obter uma informação precisa, recomenda-se entrar em contato diretamente com o nosso centro de atendimento ao cliente ou visitar nossa página web para verificar as atualizações mais recentes.",
+      "avaliacao": {
+        "categoria": "alucinacao",
+        "fatos_ok": 0,
+        "fatos_total": 0,
+        "cita_fonte": null
+      }
+    }
+  ],
+  "lora_com_contexto": [
+    {
+      "id": "A01",
+      "pergunta": "Meu motorista chegou 40 minutos depois do fim da janela. Ele ainda pode entrar?",
+      "fonte": "POL-01",
+      "resposta": "Não, ele já foi considerado perdido. Precisa fazer um novo agendamento. [Fonte: POL-01]",
+      "avaliacao": {
+        "categoria": "incorreta",
+        "fatos_ok": 0,
+        "fatos_total": 1,
+        "cita_fonte": true
+      }
+    },
+    {
+      "id": "A02",
+      "pergunta": "Quais documentos o motorista apresenta na chegada ao gate?",
+      "fonte": "POL-01",
+      "resposta": "O motorista apresenta o número do agendamento, a CNH válida e a nota fiscal ou o documento de liberação da carga (DTA, DI ou DU-E, conforme o caso).\n\n[Fonte: POL-01]",
+      "avaliacao": {
+        "categoria": "correta",
+        "fatos_ok": 3,
+        "fatos_total": 3,
+        "cita_fonte": true
+      }
+    },
+    {
+      "id": "A03",
+      "pergunta": "O que acontece com a transportadora que falta aos agendamentos sem cancelar?",
+      "fonte": "POL-01",
+      "resposta": "As transportadoras que não comparecem sem cancelamento geram bloqueio do portal do transportador por 48 horas a partir da terceira ocorrência no mesmo mês. [Fonte: POL-01]",
+      "avaliacao": {
+        "categoria": "correta",
+        "fatos_ok": 2,
+        "fatos_total": 2,
+        "cita_fonte": true
+      }
+    },
+    {
+      "id": "A04",
+      "pergunta": "Quanto tempo vale uma credencial temporária de prestador?",
+      "fonte": "POL-02",
+      "resposta": "1 mês. [Fonte: POL-02]",
+      "avaliacao": {
+        "categoria": "incorreta",
+        "fatos_ok": 0,
+        "fatos_total": 1,
+        "cita_fonte": true
+      }
+    },
+    {
+      "id": "A05",
+      "pergunta": "Com quantos dias de antecedência o gestor deve pedir a credencial de um terceirizado?",
+      "fonte": "POL-02",
+      "resposta": "3 dias úteis. São exigidos documento oficial com foto, CPF, foto 3x4 digital e, para terceirizados, o ASO (atestado de saúde ocupacional) válido. [Fonte: POL-02]",
+      "avaliacao": {
+        "categoria": "correta",
+        "fatos_ok": 1,
+        "fatos_total": 1,
+        "cita_fonte": true
+      }
+    },
+    {
+      "id": "A06",
+      "pergunta": "O que acontece se eu emprestar minha credencial para um colega?",
+      "fonte": "POL-02",
+      "resposta": "Falta grave e cancelamento imediato do acesso. Fonte: [Fonte: POL-02]",
+      "avaliacao": {
+        "categoria": "correta",
+        "fatos_ok": 1,
+        "fatos_total": 1,
+        "cita_fonte": true
+      }
+    },
+    {
+      "id": "A07",
+      "pergunta": "Que proteção extra é exigida no cais durante o embarque?",
+      "fonte": "POL-03",
+      "resposta": "Capacete com jugular, colete refletivo laranja, botina de segurança com biqueira, óculos de proteção. [Fonte: POL-03]",
+      "avaliacao": {
+        "categoria": "incorreta",
+        "fatos_ok": 0,
+        "fatos_total": 1,
+        "cita_fonte": true
+      }
+    },
+    {
+      "id": "A08",
+      "pergunta": "Qual o limite de velocidade dentro dos armazéns?",
+      "fonte": "POL-03",
+      "resposta": "20 km/h. Nas faixas próximas às pilhas de contêineres e nos armazéns, o limite é de 10 km/h. Pedestres só podem circular pelas faixas sinalizadas em amarelo. [Fonte: POL-03]",
+      "avaliacao": {
+        "categoria": "correta",
+        "fatos_ok": 1,
+        "fatos_total": 1,
+        "cita_fonte": true
+      }
+    },
+    {
+      "id": "A09",
+      "pergunta": "Quantos dias de free time tem um contêiner de exportação?",
+      "fonte": "POL-04",
+      "resposta": "5 dias corridos sem cobrança antes da data prevista de atracação do navio.",
+      "avaliacao": {
+        "categoria": "correta",
+        "fatos_ok": 1,
+        "fatos_total": 1,
+        "cita_fonte": false
+      }
+    },
+    {
+      "id": "A10",
+      "pergunta": "Cliente com crédito aprovado tem quanto tempo para pagar a armazenagem?",
+      "fonte": "POL-04",
+      "resposta": "15 dias. [Fonte: POL-04]",
+      "avaliacao": {
+        "categoria": "correta",
+        "fatos_ok": 1,
+        "fatos_total": 1,
+        "cita_fonte": true
+      }
+    },
+    {
+      "id": "A11",
+      "pergunta": "Qual o prazo para concluir o registro de uma avaria no sistema?",
+      "fonte": "POL-05",
+      "resposta": "2 horas após a identificação.\n\n[Fonte: POL-05]",
+      "avaliacao": {
+        "categoria": "correta",
+        "fatos_ok": 1,
+        "fatos_total": 1,
+        "cita_fonte": true
+      }
+    },
+    {
+      "id": "A12",
+      "pergunta": "Por quanto tempo uma carga perigosa pode ficar no pátio IMO?",
+      "fonte": "POL-06",
+      "resposta": "5 dias corridos. Após esse período, o cliente recebe um aviso para retirar a carga imediatamente. Fonte: POL-06.",
+      "avaliacao": {
+        "categoria": "correta",
+        "fatos_ok": 1,
+        "fatos_total": 1,
+        "cita_fonte": true
+      }
+    },
+    {
+      "id": "A13",
+      "pergunta": "Qual o prazo para pedir o reembolso depois que volto de viagem?",
+      "fonte": "POL-07",
+      "resposta": "No máximo 10 dias corridos após o retorno da viagem, com os comprovantes fiscais digitalizados (nota fiscal ou cupom fiscal com CPF).\n\n[Fonte: POL-07]",
+      "avaliacao": {
+        "categoria": "correta",
+        "fatos_ok": 1,
+        "fatos_total": 1,
+        "cita_fonte": true
+      }
+    },
+    {
+      "id": "A14",
+      "pergunta": "Funcionário em período de experiência pode fazer trabalho híbrido?",
+      "fonte": "POL-08",
+      "resposta": "Não. O trabalho híbrido não se aplica às áreas operacionais nem ao período de experiência (primeiros 90 dias). [Fonte: POL-08]",
+      "avaliacao": {
+        "categoria": "correta",
+        "fatos_ok": 1,
+        "fatos_total": 1,
+        "cita_fonte": true
+      }
+    },
+    {
+      "id": "A15",
+      "pergunta": "Qual o valor do auxílio-creche pago pela empresa?",
+      "fonte": null,
+      "resposta": "Não encontrei essa informação na base de conhecimento. Procure a área responsável pelo assunto. [Fonte: POL-XX]",
+      "avaliacao": {
+        "categoria": "recusa_correta",
+        "fatos_ok": 0,
+        "fatos_total": 0,
+        "cita_fonte": null
+      }
+    },
+    {
+      "id": "A16",
+      "pergunta": "Qual o comprimento máximo de navio que o terminal recebe?",
+      "fonte": null,
+      "resposta": "Não encontrei essa informação na base de conhecimento. Procure a área responsável pelo assunto. [Fonte: POL-01]",
+      "avaliacao": {
+        "categoria": "recusa_correta",
+        "fatos_ok": 0,
+        "fatos_total": 0,
+        "cita_fonte": null
+      }
+    },
+    {
+      "id": "A17",
+      "pergunta": "Qual o prazo para devolver o notebook quando o empregado sai da empresa?",
+      "fonte": null,
+      "resposta": "Não encontrei essa informação na base de conhecimento. Procure a área responsável pelo assunto. [Fonte: POL-08]",
+      "avaliacao": {
+        "categoria": "recusa_correta",
+        "fatos_ok": 0,
+        "fatos_total": 0,
+        "cita_fonte": null
+      }
+    },
+    {
+      "id": "A18",
+      "pergunta": "Quantos dias de licença-paternidade a empresa concede?",
+      "fonte": null,
+      "resposta": "Não encontrei essa informação na base de conhecimento. Procure a área responsável pelo assunto. [Fonte: POL-XX]",
+      "avaliacao": {
+        "categoria": "recusa_correta",
+        "fatos_ok": 0,
+        "fatos_total": 0,
+        "cita_fonte": null
+      }
+    },
+    {
+      "id": "A19",
+      "pergunta": "Qual o telefone do despachante aduaneiro parceiro do terminal?",
+      "fonte": null,
+      "resposta": "Não encontrei essa informação na base de conhecimento. Procure a área responsável pelo assunto. [Fonte: ADM-05]",
+      "avaliacao": {
+        "categoria": "recusa_correta",
+        "fatos_ok": 0,
+        "fatos_total": 0,
+        "cita_fonte": null
+      }
+    },
+    {
+      "id": "A20",
+      "pergunta": "Qual o preço da pesagem avulsa de caminhão na balança?",
+      "fonte": null,
+      "resposta": "Não encontrei essa informação na base de conhecimento. Procure a área responsável pelo assunto. [Fonte: POL-05]",
+      "avaliacao": {
+        "categoria": "recusa_correta",
+        "fatos_ok": 0,
+        "fatos_total": 0,
+        "cita_fonte": null
+      }
+    }
+  ]
+}

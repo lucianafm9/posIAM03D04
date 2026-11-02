@@ -140,6 +140,13 @@ Ajustes feitos na função `ask` da aula:
 - o papel `"sytem"` foi corrigido para `"system"`, porque com o erro de digitação o modelo não recebia a instrução de sistema como tal;
 - os tensores de entrada passam a ir para `model.device`, o que elimina o aviso de `input_ids` na CPU com o modelo na GPU.
 
+Ajustes que a GPU T4 do Colab exigiu, porque ela não suporta `bfloat16` no treino:
+
+- o modelo é carregado com `dtype=torch.float32`, já que o Qwen vem em `bfloat16` por padrão nas versões atuais do `transformers`;
+- o `SFTConfig` usa `bf16=False` e `fp16=False`, porque o `trl` atual liga o `bf16` por padrão.
+
+Sem esses ajustes, o `trainer.train()` falha com `gemm input type at::BFloat16 and output type float is only supported for CUDA devices with compute capability 8.0 or higher`. A aula não teve o problema porque usava versões mais antigas das bibliotecas.
+
 **Dataset.** São 60 perguntas escritas à mão, cada uma com gabarito:
 
 - **treino:** 40 perguntas, sendo 30 na base e 10 fora da base;
@@ -160,7 +167,9 @@ Cada resposta do teste é classificada automaticamente (`assistente/avaliacao.py
 | Fora da base | recusou | recusa correta |
 | Fora da base | inventou uma resposta | alucinação |
 
-Os fatos são trechos curtos com variações aceitas, como `30 minutos|30 min|meia hora`. Um teste garante que todo fato do gabarito está escrito no documento-fonte, para o gabarito não ter erro.
+Os fatos são trechos curtos com variações aceitas, como `30 minutos|30 min|meia hora`, comparados por palavra inteira. Um teste garante que todo fato do gabarito está escrito no documento-fonte, para o gabarito não ter erro.
+
+Conta como recusa tanto a frase padrão dos modos com contexto quanto as recusas genéricas do modelo sem contexto, como "não tenho informações sobre...". Dizer que não sabe não é alucinação.
 
 Métricas por modo:
 
@@ -189,34 +198,154 @@ Os quatro modos comparados:
 | Treino | 30 | 100% | 100% |
 | Teste | 14 | 100% | 100% |
 
-### Modelo (executado no Colab)
+### Modelo (executado no Colab, GPU T4)
 
-> **Pendente:** executar `notebooks/micro_capstone_assistente.ipynb` no Colab e copiar a pasta `results/` gerada para o repositório. O notebook gera `results/relatorio.md` com a tabela de métricas dos 4 modos e exemplos de respostas reais.
+Conjunto de teste: 20 perguntas, sendo 14 na base e 6 fora da base. Geração determinística (`do_sample=False`).
+
+| Métrica | A. Base sem contexto | B. Base com contexto | C. LoRA sem contexto | D. LoRA com contexto |
+|---|---:|---:|---:|---:|
+| Acerto geral | 20,0% | 80,0% | 10,0% | **85,0%** |
+| Acerto (perguntas na base) | 0,0% | **85,7%** | 0,0% | 78,6% |
+| Fatos cobertos | 0,0% | **88,2%** | 5,9% | 82,4% |
+| Recusa correta (fora da base) | 66,7% | 66,7% | 33,3% | **100,0%** |
+| Taxa de alucinação | 60,0% | **15,0%** | 75,0% | **15,0%** |
+| Cita a fonte certa | 0,0% | 64,3% | 0,0% | **92,9%** |
+
+Distribuição das respostas:
+
+| Categoria | A | B | C | D |
+|---|---:|---:|---:|---:|
+| Correta | 0 | 12 | 0 | 11 |
+| Incompleta | 0 | 0 | 1 | 0 |
+| Incorreta (na base, sem nenhum fato) | 10 | 1 | 11 | 3 |
+| Recusa indevida | 4 | 1 | 2 | 0 |
+| Recusa correta | 4 | 4 | 2 | 6 |
+| Alucinação (fora da base) | 2 | 2 | 4 | 0 |
+
+Arquivos: `results/metricas.json`, `results/respostas.json` (as 80 respostas completas) e `results/relatorio.md`.
+
+**Revisão do avaliador.** Ao ler as 80 respostas, encontrei duas falhas na primeira versão do avaliador automático, a que rodou no Colab:
+
+1. A comparação de fatos era por trecho de texto. Por isso "30 a **45 dias**" contou como acerto do fato "**5 dias**" (A09, modo A). Agora a comparação é por palavra inteira.
+2. Só a frase padrão contava como recusa. Por isso "não tenho informações sobre o auxílio-creche" contou como alucinação nos modos sem contexto. Agora as recusas genéricas também contam.
+
+Como o avaliador não depende do modelo, `python scripts/reavaliar.py` reclassifica as respostas salvas sem rodar o Colab de novo. Os modos B e D não mudaram. O modo A foi de 5% de acerto e 95% de alucinação para 20% e 60%, e o modo C de 0% e 95% para 10% e 75%. Com o avaliador antigo, a diferença a favor do grounding parecia maior do que é; os números da tabela acima são os corrigidos. A avaliação original está guardada em `results/colab_original/`, e os dois casos viraram testes em `tests/test_assistente.py`.
 
 ## Análise comparativa
 
-> **Pendente:** esta seção será escrita com os números reais de `results/relatorio.md`, depois da execução no Colab.
+### Sem grounding (A): o modelo não sabe e, na maioria das vezes, inventa
 
-Hipóteses que a avaliação vai confirmar ou refutar:
+Sem contexto, o modelo não acertou nenhuma das 14 perguntas da base. Em 10 delas respondeu sem nenhum fato correto, na maioria **inventando** um prazo ou uma regra plausível:
 
-- **A (sem grounding):** o modelo não conhece prazos, valores e ramais da empresa fictícia. A expectativa é que invente respostas plausíveis, como "a tolerância é de 15 minutos", e quase nunca recuse. É a alucinação que o projeto quer reduzir.
-- **A → B (só grounding):** a expectativa é que o acerto nas perguntas da base suba bastante, porque a resposta passa a estar no prompt. As recusas devem melhorar menos: modelos pequenos tendem a "aproveitar" algum trecho do contexto mesmo quando ele não responde a pergunta.
-- **B → D (grounding + LoRA):** o treino com exemplos de recusa e a citação no formato `[Fonte: POL-NN]` deve aumentar a recusa correta e a citação da fonte.
-- **C (LoRA sem contexto):** 30 exemplos e 3 épocas não bastam para o modelo "decorar" a base. A expectativa é que C fique perto de A nas perguntas novas do teste, mostrando que o fine-tuning ensina o **comportamento** e o grounding fornece o **conhecimento**.
+- "pelo menos 30 dias de antecedência" para o credenciamento (o certo é 3 dias úteis);
+- "não pode permanecer por mais de 24 horas" no pátio IMO (o certo é 5 dias);
+- "30 a 45 dias" de free time de exportação (o certo é 5 dias);
+- "Sim, os funcionários podem realizar seu trabalho em um ambiente híbrido" para quem está em experiência (o certo é não).
+
+Nas outras 4, ele disse que não tinha a informação. Essa honestidade aparece também nas perguntas fora da base (4 de 6 recusadas), mas não ajuda o funcionário: o modo A **não consegue responder nada** sobre a empresa. Quando arrisca, inventa, como em "15 dias de licença-paternidade".
+
+### Grounding (A → B): a maior parte da melhoria vem do contexto
+
+Com os trechos da base no prompt, o mesmo modelo, sem nenhum treino, foi de 0% para **85,7%** de acerto nas perguntas da base. A alucinação caiu de 60% para **15%**. Essa é a evidência central do projeto: **conectar a IA aos documentos é o que traz a precisão**.
+
+As falhas de B são as previstas para um modelo pequeno:
+
+- **Usa contexto que não responde a pergunta.** Na A18 (licença-paternidade), a busca trouxe o trecho de férias, e o modelo respondeu com as regras de férias. Na A17 (devolução de notebook), respondeu com a regra de perda de credencial.
+- **Recusa o que está no contexto.** Na A14 (híbrido na experiência), a resposta estava no trecho, e mesmo assim ele recusou.
+- **Cita a fonte de forma irregular.** Citou a fonte certa em 64% das respostas da base, e na A07 a resposta estava certa mas citou POL-08 no lugar de POL-03.
+
+### Fine-tuning com grounding (B → D): o LoRA ensina o comportamento
+
+O LoRA, treinado com os mesmos hiperparâmetros da aula em 40 exemplos, mudou o **comportamento** do modelo:
+
+- **recusa correta** nas perguntas fora da base: de 66,7% para **100%**, com zero alucinações fora da base;
+- **citação da fonte certa:** de 64,3% para **92,9%**;
+- respostas mais curtas e diretas, no formato do treino.
+
+O custo foi uma pequena queda no acerto automático das perguntas da base: de 85,7% para 78,6%, ou seja, 11 em vez de 12. Revisando as 3 respostas marcadas como incorretas em D:
+
+| Caso | Resposta de D | Revisão manual |
+|---|---|---|
+| A01 | "Não, ele já foi considerado perdido. Precisa fazer um novo agendamento. [Fonte: POL-01]" | correta, mas não cita os 30 minutos que o gabarito exige |
+| A04 | "1 mês. [Fonte: POL-02]" | equivalente aos 30 dias do documento |
+| A07 | lista o EPI geral (capacete, colete, botina, óculos) | **errada**: a pergunta era sobre o protetor auricular exigido no cais |
+
+Na revisão manual, D acerta 13 das 14 perguntas da base e recusa as 6 de fora, um acerto de **95%**. A única resposta errada (A07) usou um trecho certo da base para a pergunta errada, sem inventar informação. B, na mesma revisão, continua com as duas alucinações (A17 e A18) e com a resposta contraditória da A01 ("Sim, seu motorista pode entrar. No entanto, ele precisará de um novo agendamento").
+
+### LoRA sem contexto (C): fine-tuning não substitui grounding
+
+C foi o **pior modo**, com 75% de alucinação. O adapter aprendeu a responder de forma curta e confiante, mas não aprendeu os fatos da base: 30 exemplos e 3 épocas não bastam para "decorar" 8 políticas. Sem o contexto, essa confiança vira invenção:
+
+- "o despachante aduaneiro parceiro tem o número de contato 0800 721 3456";
+- "o terminal recebe naves com comprimentos entre 105 e 120 metros";
+- "Se você emprestar sua credencial, não haverá nenhuma alteração na sua situação".
+
+C também recusou menos que o modelo base (33% contra 67%).
+
+### Conclusão
+
+| Pergunta | Resposta dos dados |
+|---|---|
+| O grounding reduz a alucinação? | Sim: de 60% (A) para 15% (B e D), e para 0% nas perguntas fora da base com o LoRA (D) |
+| O grounding melhora a precisão? | Sim: de 0% para 78,6–85,7% de acerto nas perguntas da base |
+| E o fine-tuning? | Ensina o **comportamento** (recusar, citar a fonte, ser objetivo), não o **conhecimento** |
+| Fine-tuning sem grounding funciona? | Não: aumenta a alucinação, porque o modelo fica mais confiante sem saber mais |
+
+Para uma empresa, a arquitetura recomendada é a do modo D. A base fica versionada e é recuperada a cada pergunta, o que permite atualizar uma política sem retreinar o modelo. O fine-tuning entra só para padronizar o comportamento.
+
+### Próximos passos identificados na avaliação
+
+- **Validar a citação na saída:** o modelo às vezes coloca uma fonte depois da recusa, inclusive inexistente, como "[Fonte: POL-XX]" e "[Fonte: ADM-05]". Uma guarda de saída removeria a fonte das recusas e só aceitaria IDs que estão nos trechos recuperados.
+- **Limiar de relevância na busca não basta sozinho:** a pontuação BM25 do 1º trecho vai de 3,6 a 15,1 nas perguntas da base e de 0 a 11,7 nas de fora. As faixas se sobrepõem: "Qual o valor da diária de armazenagem de um contêiner reefer?" pontua 11,7 porque o documento de armazenagem fala de reefer, mas não traz valores. Por isso a decisão de recusar precisa ficar com o modelo, que é o que o LoRA ensinou. Um limiar baixo serviria só como filtro adicional.
+- **Mais exemplos de treino** com perguntas que exigem escolher entre trechos parecidos, como EPI geral × EPI do cais, para corrigir erros como o A07.
 
 ## Exemplos de perguntas e respostas
 
-Perguntas do conjunto de teste com a resposta esperada do gabarito. As respostas reais de cada modo ficam em `results/relatorio.md` depois da execução.
+Respostas reais do conjunto de teste (trechos; as respostas completas estão em `results/respostas.json`).
 
-| ID | Pergunta | Resposta esperada | Fonte |
-|---|---|---|---|
-| A01 | Meu motorista chegou 40 minutos depois do fim da janela. Ele ainda pode entrar? | Não. A tolerância é de 30 minutos após o fim da janela; depois disso é preciso um novo agendamento. | POL-01 |
-| A03 | O que acontece com a transportadora que falta aos agendamentos sem cancelar? | A partir da 3ª ocorrência de no-show no mês, bloqueio de 48 horas para novos agendamentos. | POL-01 |
-| A09 | Quantos dias de free time tem um contêiner de exportação? | 5 dias corridos antes da data prevista de atracação. | POL-04 |
-| A12 | Por quanto tempo uma carga perigosa pode ficar no pátio IMO? | 5 dias corridos; depois o cliente é notificado para retirada imediata. | POL-06 |
-| A14 | Funcionário em período de experiência pode fazer trabalho híbrido? | Não; o híbrido não se aplica aos primeiros 90 dias. | POL-08 |
-| A15 | Qual o valor do auxílio-creche pago pela empresa? | Recusa: a informação não está na base. | — |
-| A18 | Quantos dias de licença-paternidade a empresa concede? | Recusa: a informação não está na base. | — |
+**A09 — Quantos dias de free time tem um contêiner de exportação?** Esperado: 5 dias corridos (POL-04).
+
+| Modo | Resposta | Avaliação |
+|---|---|---|
+| A | "Um contêiner de exportação geralmente possui uma duração de 30 a 45 dias para ser liberado..." | incorreta (inventou) |
+| B | "5 dias corridos sem cobrança antes da data prevista de atracação do navio." | correta, sem fonte |
+| C | "Um contêiner de exportação geralmente possui 30 dias de free time..." | incorreta (inventou) |
+| D | "5 dias corridos sem cobrança antes da data prevista de atracação do navio." | correta, sem fonte |
+
+**A14 — Funcionário em período de experiência pode fazer trabalho híbrido?** Esperado: não, primeiros 90 dias (POL-08).
+
+| Modo | Resposta | Avaliação |
+|---|---|---|
+| A | "Sim, os funcionários podem realizar seu trabalho em um ambiente híbrido..." | incorreta (inventou) |
+| B | "Não encontrei essa informação na base de conhecimento..." | recusa indevida |
+| C | "Não, a experiência não permite trabalhar em horários flexíveis ou híbridos..." | incorreta (não cita os 90 dias) |
+| D | "Não. O trabalho híbrido não se aplica às áreas operacionais nem ao período de experiência (primeiros 90 dias). [Fonte: POL-08]" | correta |
+
+**A03 — O que acontece com a transportadora que falta aos agendamentos sem cancelar?** Esperado: bloqueio de 48 h a partir da 3ª ocorrência no mês (POL-01).
+
+| Modo | Resposta | Avaliação |
+|---|---|---|
+| A | "...geralmente ocorre uma situação de sobrecarga na área de operações. Para resolver isso, os seguintes passos..." | incorreta (inventou) |
+| B | "...geram bloqueio do terminal por 48 horas a partir da terceira ocorrência no mesmo mês. [Fonte: POL-01]" | correta |
+| D | "...geram bloqueio do portal do transportador por 48 horas a partir da terceira ocorrência no mesmo mês. [Fonte: POL-01]" | correta |
+
+**A18 — Quantos dias de licença-paternidade a empresa concede?** Fora da base: o certo é recusar.
+
+| Modo | Resposta | Avaliação |
+|---|---|---|
+| A | "A empresa concede 15 dias de licença-paternidade para os empregados..." | alucinação |
+| B | "As férias podem ser divididas em até 3 períodos..." (usou um trecho que não responde) | alucinação |
+| C | "A empresa concedeu 15 dias de licença-paternidade para os empregados." | alucinação |
+| D | "Não encontrei essa informação na base de conhecimento. Procure a área responsável pelo assunto." | recusa correta |
+
+**A19 — Qual o telefone do despachante aduaneiro parceiro do terminal?** Fora da base.
+
+| Modo | Resposta | Avaliação |
+|---|---|---|
+| A | "Desculpe, mas não tenho informações sobre a localização exata ou contato específico..." | recusa correta |
+| B | "Não encontrei essa informação na base de conhecimento..." | recusa correta |
+| C | "O despachante aduaneiro parceiro do Terminal do Porto Ventura tem o número de contato 0800 721 3456." | alucinação |
+| D | "Não encontrei essa informação na base de conhecimento..." | recusa correta |
 
 ## Tratamento de erros
 
@@ -228,17 +357,19 @@ Perguntas do conjunto de teste com a resposta esperada do gabarito. As respostas
 | Fato do gabarito que não está no documento-fonte | o teste `test_todo_fato_esperado_esta_no_documento_fonte` falha | erro nos testes, antes do treino |
 | Repositório privado no Colab | o `git clone` falha na célula 1 | instrução no notebook para subir o zip do projeto |
 | Resposta longa ou cortada | `max_new_tokens=150` e limite de 3 frases no prompt | resposta curta; se cortada, a avaliação ainda procura os fatos |
+| GPU sem suporte a `bfloat16` (T4) | modelo carregado em `float32` e `bf16=False` no `SFTConfig` | o treino roda; sem o ajuste, `RuntimeError` no `trainer.train()` |
+| Erro no avaliador descoberto depois da execução | `scripts/reavaliar.py` reclassifica as respostas salvas | métricas atualizadas sem rodar o modelo de novo; original em `results/colab_original/` |
 
 ## Critérios de aceitação e evidências
 
 | Critério | Como o projeto atende | Evidência |
 |---|---|---|
-| Respostas baseadas na fonte fornecida | o contexto vem só da base e a resposta cita `[Fonte: POL-NN]` | métrica "cita a fonte"; `results/relatorio.md` |
-| Redução clara de alucinação | comparação A × B × D com a taxa de alucinação e a recusa correta | tabela de métricas dos 4 modos |
-| Relevância das respostas | busca com 100% de acerto no 1º trecho; gabarito por fatos | `results/avaliacao_busca.json`; "fatos cobertos" |
-| Uso correto do contexto | prompt com regras explícitas e LoRA treinado no mesmo formato | `assistente/prompts.py`; `data/treino.jsonl` |
+| Respostas baseadas na fonte fornecida | o contexto vem só da base e a resposta cita `[Fonte: POL-NN]` | cita a fonte certa em 92,9% das respostas da base (modo D) |
+| Redução clara de alucinação | comparação dos 4 modos com e sem grounding | alucinação de 60% (A) para 15% (D); 0 alucinações fora da base em D |
+| Relevância das respostas | busca com 100% de acerto no 1º trecho; gabarito por fatos | `results/avaliacao_busca.json`; fatos cobertos de 0% (A) para 82–88% (B e D) |
+| Uso correto do contexto | prompt com regras explícitas e LoRA treinado no mesmo formato | recusa correta de 100% em D; revisão manual dos erros na Análise comparativa |
 | Conectar IA com dados reais | os documentos da empresa entram no prompt a cada pergunta | `scripts/demo_contexto.py` |
-| Melhoria de precisão | acerto na base do modo A comparado com B e D | tabela de métricas |
+| Melhoria de precisão | acerto na base do modo A comparado com B e D | de 0% (A) para 85,7% (B) e 78,6% (D); 95% na revisão manual de D |
 | Visão de sistema aplicável em empresas | base em Markdown versionada, ID por política, recusa padronizada e encaminhamento à área responsável | seções Arquitetura e Limitações |
 
 ## Estrutura do projeto
@@ -258,16 +389,23 @@ data/
   treino.jsonl, teste.jsonl
 notebooks/
   micro_capstone_assistente.ipynb   Colab: baseline, fine-tuning LoRA e avaliação dos 4 modos
-scripts/                  demo do contexto, avaliação da busca e geração do dataset
+scripts/                  demo do contexto, avaliação da busca, geração do dataset e reavaliação
 tests/                    testes sem modelo (unittest)
-results/                  avaliação da busca e, após o Colab, métricas, respostas e relatório
+results/
+  avaliacao_busca.json    acerto da busca (local)
+  respostas.json          as 80 respostas do Colab (20 perguntas x 4 modos) com a avaliação
+  metricas.json           métricas por modo
+  relatorio.md            tabela comparativa e exemplos
+  colab_original/         avaliação original do Colab, antes da correção do avaliador
 aula/                     material da aula M3D4 e o adapter de sentimento treinado em sala
 ```
 
 ## Limitações
 
 - **Base pequena e fictícia:** 8 documentos e 34 trechos. Numa empresa real, a base teria centenas de documentos com versões, e seria preciso controlar a vigência e quem pode ver cada um.
-- **Avaliação por fatos:** a métrica procura os fatos do gabarito no texto. Uma resposta certa com outras palavras, como "uma hora e meia" em vez de "90 minutos", pode contar como incompleta. Por isso o relatório mostra as respostas completas para conferência manual.
+- **Avaliação por fatos:** a métrica procura os fatos do gabarito no texto. Uma resposta certa com outras palavras pode contar como incorreta: foi o caso de "1 mês" no lugar de "30 dias" (A04, modo D). Por isso o README traz a revisão manual dos erros, e as respostas completas ficam em `results/respostas.json`.
+- **Conjunto de teste pequeno:** com 20 perguntas, cada resposta vale 5 pontos percentuais. A diferença entre B e D no acerto da base (85,7% contra 78,6%) é de uma única pergunta. Já as diferenças de recusa e de alucinação entre A, B e D são grandes e consistentes.
+- **Uma execução:** a geração é determinística, mas o treino do LoRA não foi repetido com outras sementes.
 - **Modelo pequeno:** o Qwen 1.5B em 4 bits pode juntar trechos de documentos diferentes ou seguir mal a instrução de recusa. O LoRA melhora esse comportamento, mas não o garante.
 - **Busca lexical:** perguntas com sinônimos que não estão nos documentos, como "carreta" em vez de "caminhão", podem recuperar o trecho errado.
 - **Dataset pequeno:** 40 exemplos de treino escritos à mão. Em produção, os pares seriam gerados a partir dos documentos e revisados pelas áreas responsáveis.
