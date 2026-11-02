@@ -303,16 +303,50 @@ C foi o **pior modo**, com 75% de alucinação. O adapter aprendeu a responder d
 
 C também recusou menos que o modelo base (33% contra 67%).
 
+### Relação entre alucinação e precisão
+
+![O que cada modo fez com as 20 perguntas de teste](results/composicao_respostas.svg)
+
+A taxa de alucinação sobre o total mistura duas decisões do modelo: **responder ou recusar** e, quando responde, **acertar ou errar**. Um modelo que recusasse tudo teria 0% de alucinação e nenhuma utilidade. Por isso a análise separa as duas decisões (revisão manual):
+
+| Modo | Responde | Precisão quando responde | Erra quando responde | Erro afirmado no total |
+|---|---:|---:|---:|---:|
+| A. Base sem contexto | 12/20 | 0% | 67% | 8/20 (40%) |
+| B. Base com contexto | 15/20 | 80% | 20% | 3/20 (15%) |
+| C. LoRA sem contexto | 16/20 | 0% | 75% | 12/20 (60%) |
+| D. LoRA com contexto | 14/20 | **93%** | **7%** | **1/20 (5%)** |
+
+- **Sem grounding (A e C),** a precisão é zero porque o conhecimento não existe no modelo. A única forma de alucinar menos é responder menos. A e C sabem a mesma coisa, ou seja, nada; a diferença entre eles é a disposição para responder, que o LoRA aumentou.
+- **O grounding (A → B)** melhora as duas métricas ao mesmo tempo, sem troca entre elas, porque muda a origem da resposta: da memória do modelo para o documento.
+- **O LoRA (B → D)** melhora a **calibração**, isto é, a decisão de quando responder. D respondeu exatamente as 14 perguntas que têm resposta na base. B respondeu 2 que deveria recusar e recusou 1 que deveria responder.
+
+**O grounding resolve a precisão e o LoRA resolve a calibração.** Juntos, levam o erro afirmado de 40% para 5%.
+
+Uma ressalva importante: nas 5 perguntas de **risco alto** (EPI, velocidade, carga perigosa, controle de acesso e avaria), o único erro de D foi justamente uma delas. Na A07, ele omitiu o protetor auricular do cais. Uma precisão média alta não garante acerto nos temas críticos, que precisam de uma proteção própria.
+
+### Implicações para um ambiente corporativo
+
+1. **O conhecimento deve ficar na base, não nos pesos do modelo.** O fine-tuning sem grounding (C) produz um modelo confiante e desinformado. O fine-tuning entra depois, para padronizar o comportamento.
+2. **Medir só a alucinação engana.** Em produção, o painel precisa ler juntos a precisão das respostas dadas, a cobertura, a taxa de recusa e o erro em temas críticos.
+3. **Errar custa mais do que recusar, e o custo depende do tema.** Nos temas de risco alto, a resposta deve trazer o trecho literal com link para a política e indicar a área responsável. Se a fonte não for validada, o assistente recusa e encaminha.
+4. **As recusas mostram lacunas na documentação.** Auxílio-creche, licença-paternidade e devolução de notebook são dúvidas reais sem política escrita. O registro das recusas vira uma lista de pendências para o RH e as áreas.
+5. **Atualizar sem retreinar, com teste de regressão.** Uma política nova exige só editar o documento. O conjunto de teste com gabarito é rodado antes de cada nova versão.
+6. **A citação precisa ser validada.** O modelo anexou fontes inexistentes, como ADM-05. Uma citação falsa dá credibilidade a uma resposta errada.
+7. **Contatos inventados são risco de fraude.** Sem grounding, o modelo inventou telefones e sites da empresa.
+8. **Custo e privacidade.** Um modelo de 1,5B em 4 bits roda numa GPU T4, o que permite hospedar o assistente na própria empresa, sem enviar documentos para fora (LGPD). A busca deve filtrar os documentos pelo perfil de acesso de quem pergunta.
+
+A análise completa por critério, com as tabelas de risco e de calibração, está em [`results/relatorio.md`](results/relatorio.md), seções 1 a 4.
+
 ### Conclusão
 
 | Pergunta | Resposta dos dados |
 |---|---|
-| O grounding reduz a alucinação? | Sim: de 60% (A) para 15% (B e D), e para 0% nas perguntas fora da base com o LoRA (D) |
-| O grounding melhora a precisão? | Sim: de 0% para 78,6–85,7% de acerto nas perguntas da base |
-| E o fine-tuning? | Ensina o **comportamento** (recusar, citar a fonte, ser objetivo), não o **conhecimento** |
-| Fine-tuning sem grounding funciona? | Não: aumenta a alucinação, porque o modelo fica mais confiante sem saber mais |
+| O grounding reduz a alucinação? | Sim: o erro afirmado cai de 40% (A) para 15% (B), e o erro quando responde, de 67% para 20% |
+| O grounding melhora a precisão? | Sim: de 0% para 80% de precisão nas respostas dadas e de 0% para 86% de cobertura da base |
+| E o fine-tuning? | Ensina o **comportamento**: calibração, citação da fonte e objetividade. Com grounding, leva a precisão a 93% e o erro afirmado a 5% |
+| Fine-tuning sem grounding funciona? | Não: aumenta a disposição de responder sem dar o conhecimento, e o erro afirmado sobe para 60% |
 
-Para uma empresa, a arquitetura recomendada é a do modo D. A base fica versionada e é recuperada a cada pergunta, o que permite atualizar uma política sem retreinar o modelo. O fine-tuning entra só para padronizar o comportamento.
+Para uma empresa, a arquitetura recomendada é a do modo D, com uma guarda de saída e um tratamento próprio para temas de risco alto. A base fica versionada e é recuperada a cada pergunta, o que permite atualizar uma política sem retreinar o modelo.
 
 ### Próximos passos identificados na avaliação
 

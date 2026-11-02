@@ -210,6 +210,89 @@ def auto_x_manual(respostas: dict, revisao: dict) -> str:
     return "\n".join(out)
 
 
+ERRO_AFIRMADO = {"inventou", "contexto_mal_usado"}
+SEM_UTILIDADE = {"vaga", "parcial", "recusa_indevida"}
+
+
+def precisao_x_alucinacao(respostas: dict, revisao: dict) -> str:
+    """Separa o que o modo respondeu do que recusou: precisão e alucinação medidas sobre as respostas dadas."""
+    out = ["| Modo | Respondeu (não recusou) | Precisão das respostas dadas | Alucinação nas respostas dadas "
+           "| Cobertura da base | Recusas corretas / recusas |",
+           "|---|---:|---:|---:|---:|---:|"]
+    for m, itens in respostas.items():
+        rot = {i["id"]: revisao[m][i["id"]]["rotulo"] for i in itens}
+        recusas = [i for i in itens if rot[i["id"]] in ("recusa_correta", "recusa_indevida")]
+        dadas = [i for i in itens if i not in recusas]
+        corretas = sum(rot[i["id"]] in ("correta", "correta_equivalente") for i in dadas)
+        erradas = sum(rot[i["id"]] in ERRO_AFIRMADO for i in dadas)
+        na_base = sum(1 for i in itens if i["fonte"])
+        rec_ok = sum(rot[i["id"]] == "recusa_correta" for i in recusas)
+        out.append(f"| {MODOS[m]} | {_pct(len(dadas), len(itens))} | {_pct(corretas, len(dadas))} "
+                   f"| {_pct(erradas, len(dadas))} | {_pct(corretas, na_base)} | {_pct(rec_ok, len(recusas))} |")
+    return "\n".join(out)
+
+
+def risco_alto(respostas: dict, revisao: dict) -> str:
+    casos = [c for c in carregar_perguntas() if c["split"] == "teste" and c.get("risco") == "alto"]
+    modos = list(respostas)
+    out = ["| ID | Pergunta | " + " | ".join(LETRA[m] for m in modos) + " |",
+           "|---|---|" + "---|" * len(modos)]
+    for c in casos:
+        cel = []
+        for m in modos:
+            rot = revisao[m][c["id"]]["rotulo"]
+            cel.append(("⚠️ " if rot in ERRO_AFIRMADO else "") + ROTULOS[rot])
+        out.append(f"| {c['id']} | {c['pergunta']} | " + " | ".join(cel) + " |")
+    total = [sum(revisao[m][c["id"]]["rotulo"] in ERRO_AFIRMADO for c in casos) for m in modos]
+    out.append("| | **Respostas erradas afirmadas como certas** | "
+               + " | ".join(f"**{t}/{len(casos)}**" for t in total) + " |")
+    return "\n".join(out)
+
+
+GRUPOS_GRAFICO = [
+    ("Correta", {"correta", "correta_equivalente"}, "#0ca30c"),
+    ("Recusa correta", {"recusa_correta"}, "#2a78d6"),
+    ("Sem resposta útil", SEM_UTILIDADE, "#b4b2a9"),
+    ("Erro afirmado", ERRO_AFIRMADO, "#d03b3b"),
+]
+
+
+def grafico_composicao(respostas: dict, revisao: dict, caminho: Path) -> None:
+    """Barras empilhadas: o que cada modo fez com as 20 perguntas (SVG sem dependências)."""
+    larg, x0, barra, alt_barra, gap, topo = 760, 190, 520, 34, 22, 72
+    altura = topo + len(respostas) * (alt_barra + gap) + 40
+    p = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{larg}" height="{altura}" viewBox="0 0 {larg} {altura}" '
+         'font-family="Segoe UI, Helvetica, Arial, sans-serif">',
+         f'<rect width="{larg}" height="{altura}" fill="#fcfcfb"/>',
+         '<text x="24" y="32" font-size="17" font-weight="600" fill="#0b0b0b">'
+         'O que cada modo fez com as 20 perguntas de teste</text>',
+         '<text x="24" y="54" font-size="13" fill="#52514e">Revisão manual · número de respostas</text>']
+    lx = x0
+    for nome, _, cor in GRUPOS_GRAFICO:
+        p.append(f'<rect x="{lx}" y="{altura - 32}" width="12" height="12" rx="2" fill="{cor}"/>')
+        p.append(f'<text x="{lx + 18}" y="{altura - 22}" font-size="12" fill="#52514e">{nome}</text>')
+        lx += 18 + len(nome) * 7 + 22
+    for k, (m, itens) in enumerate(respostas.items()):
+        y = topo + k * (alt_barra + gap)
+        p.append(f'<text x="{x0 - 12}" y="{y + alt_barra / 2 + 5}" font-size="13" fill="#0b0b0b" '
+                 f'text-anchor="end">{MODOS[m]}</text>')
+        x = x0
+        for nome, rotulos, cor in GRUPOS_GRAFICO:
+            n = sum(revisao[m][i["id"]]["rotulo"] in rotulos for i in itens)
+            if not n:
+                continue
+            w = barra * n / len(itens)
+            p.append(f'<rect x="{x + 1:.1f}" y="{y}" width="{w - 2:.1f}" height="{alt_barra}" rx="4" fill="{cor}">'
+                     f'<title>{MODOS[m]}: {nome} = {n}</title></rect>')
+            if w >= 22:
+                cor_txt = "#0b0b0b" if cor == "#b4b2a9" else "#ffffff"
+                p.append(f'<text x="{x + w / 2:.1f}" y="{y + alt_barra / 2 + 5}" font-size="13" font-weight="600" '
+                         f'fill="{cor_txt}" text-anchor="middle">{n}</text>')
+            x += w
+    p.append("</svg>")
+    caminho.write_text("\n".join(p) + "\n", encoding="utf-8", newline="\n")
+
+
 def exemplos(respostas: dict, ids: list[str], revisao: dict | None) -> str:
     blocos = []
     for caso_id in ids:
@@ -246,25 +329,32 @@ def gerar_relatorio(pasta: Path = PASTA_RESULTS, ids_exemplo: list[str] | None =
         matriz_criterios(respostas, revisao),
     ]
     if interpretacao.exists():
-        partes.append("\n" + interpretacao.read_text(encoding="utf-8").strip())
-    partes += ["\n## 3. Resultado por pergunta\n",
+        texto_interp = interpretacao.read_text(encoding="utf-8").strip()
+        if revisao:
+            grafico_composicao(respostas, revisao, pasta / "composicao_respostas.svg")
+            texto_interp = (texto_interp
+                            .replace("<!-- GRAFICO -->", "![Composição das respostas por modo](composicao_respostas.svg)")
+                            .replace("<!-- TABELA_PRECISAO -->", precisao_x_alucinacao(respostas, revisao))
+                            .replace("<!-- TABELA_RISCO -->", risco_alto(respostas, revisao)))
+        partes.append("\n" + texto_interp)
+    partes += ["\n## 5. Resultado por pergunta\n",
                "Categoria automática em cada célula; quando a revisão manual discorda ou detalha o erro, "
                "o rótulo manual aparece em itálico.\n",
                matriz_perguntas(respostas, revisao)]
     if revisao:
-        partes += ["\n## 4. O que mudou entre os modos (revisão manual)\n",
+        partes += ["\n## 6. O que mudou entre os modos (revisão manual)\n",
                    "Perguntas que passaram a ter (ou deixaram de ter) resposta útil — correta, correta com "
                    "outras palavras ou recusa correta — de um modo para outro.\n",
                    transicoes(respostas, revisao)]
-    partes += ["\n## 5. Por que as perguntas fora da base são difíceis para a busca\n",
+    partes += ["\n## 7. Por que as perguntas fora da base são difíceis para a busca\n",
                "A busca sempre devolve os trechos mais parecidos, mesmo quando nenhum responde. "
                "A tabela mostra o 1º trecho entregue ao modelo nas 6 perguntas fora da base.\n",
                busca_fora_da_base(respostas, revisao)]
     if revisao:
-        partes += ["\n## 6. Avaliação automática × revisão manual\n",
+        partes += ["\n## 8. Avaliação automática × revisão manual\n",
                    auto_x_manual(respostas, revisao)]
-    partes += ["\n## 7. Exemplos de respostas\n", exemplos(respostas, ids_exemplo, revisao)]
+    partes += ["\n## 9. Exemplos de respostas\n", exemplos(respostas, ids_exemplo, revisao)]
 
     texto = "\n".join(partes) + "\n"
-    (pasta / "relatorio.md").write_text(texto, encoding="utf-8")
+    (pasta / "relatorio.md").write_text(texto, encoding="utf-8", newline="\n")
     return texto

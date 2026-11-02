@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="336" viewBox="0 0 760 336" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+<rect width="760" height="336" fill="#fcfcfb"/>
+<text x="24" y="32" font-size="17" font-weight="600" fill="#0b0b0b">O que cada modo fez com as 20 perguntas de teste</text>
+<text x="24" y="54" font-size="13" fill="#52514e">Revisão manual · número de respostas</text>
+<rect x="190" y="304" width="12" height="12" rx="2" fill="#0ca30c"/>
+<text x="208" y="314" font-size="12" fill="#52514e">Correta</text>
+<rect x="279" y="304" width="12" height="12" rx="2" fill="#2a78d6"/>
+<text x="297" y="314" font-size="12" fill="#52514e">Recusa correta</text>
+<rect x="417" y="304" width="12" height="12" rx="2" fill="#b4b2a9"/>
+<text x="435" y="314" font-size="12" fill="#52514e">Sem resposta útil</text>
+<rect x="576" y="304" width="12" height="12" rx="2" fill="#d03b3b"/>
+<text x="594" y="314" font-size="12" fill="#52514e">Erro afirmado</text>
+<text x="178" y="94.0" font-size="13" fill="#0b0b0b" text-anchor="end">A. Base sem contexto</text>
+<rect x="191.0" y="72" width="102.0" height="34" rx="4" fill="#2a78d6"><title>A. Base sem contexto: Recusa correta = 4</title></rect>
+<text x="242.0" y="94.0" font-size="13" font-weight="600" fill="#ffffff" text-anchor="middle">4</text>
+<rect x="295.0" y="72" width="206.0" height="34" rx="4" fill="#b4b2a9"><title>A. Base sem contexto: Sem resposta útil = 8</title></rect>
+<text x="398.0" y="94.0" font-size="13" font-weight="600" fill="#0b0b0b" text-anchor="middle">8</text>
+<rect x="503.0" y="72" width="206.0" height="34" rx="4" fill="#d03b3b"><title>A. Base sem contexto: Erro afirmado = 8</title></rect>
+<text x="606.0" y="94.0" font-size="13" font-weight="600" fill="#ffffff" text-anchor="middle">8</text>
+<text x="178" y="150.0" font-size="13" fill="#0b0b0b" text-anchor="end">B. Base com contexto</text>
+<rect x="191.0" y="128" width="310.0" height="34" rx="4" fill="#0ca30c"><title>B. Base com contexto: Correta = 12</title></rect>
+<text x="346.0" y="150.0" font-size="13" font-weight="600" fill="#ffffff" text-anchor="middle">12</text>
+<rect x="503.0" y="128" width="102.0" height="34" rx="4" fill="#2a78d6"><title>B. Base com contexto: Recusa correta = 4</title></rect>
+<text x="554.0" y="150.0" font-size="13" font-weight="600" fill="#ffffff" text-anchor="middle">4</text>
+<rect x="607.0" y="128" width="24.0" height="34" rx="4" fill="#b4b2a9"><title>B. Base com contexto: Sem resposta útil = 1</title></rect>
+<text x="619.0" y="150.0" font-size="13" font-weight="600" fill="#0b0b0b" text-anchor="middle">1</text>
+<rect x="633.0" y="128" width="76.0" height="34" rx="4" fill="#d03b3b"><title>B. Base com contexto: Erro afirmado = 3</title></rect>
+<text x="671.0" y="150.0" font-size="13" font-weight="600" fill="#ffffff" text-anchor="middle">3</text>
+<text x="178" y="206.0" font-size="13" fill="#0b0b0b" text-anchor="end">C. LoRA sem contexto</text>
+<rect x="191.0" y="184" width="50.0" height="34" rx="4" fill="#2a78d6"><title>C. LoRA sem contexto: Recusa correta = 2</title></rect>
+<text x="216.0" y="206.0" font-size="13" font-weight="600" fill="#ffffff" text-anchor="middle">2</text>
+<rect x="243.0" y="184" width="154.0" height="34" rx="4" fill="#b4b2a9"><title>C. LoRA sem contexto: Sem resposta útil = 6</title></rect>
+<text x="320.0" y="206.0" font-size="13" font-weight="600" fill="#0b0b0b" text-anchor="middle">6</text>
+<rect x="399.0" y="184" width="310.0" height="34" rx="4" fill="#d03b3b"><title>C. LoRA sem contexto: Erro afirmado = 12</title></rect>
+<text x="554.0" y="206.0" font-size="13" font-weight="600" fill="#ffffff" text-anchor="middle">12</text>
+<text x="178" y="262.0" font-size="13" fill="#0b0b0b" text-anchor="end">D. LoRA com contexto</text>
+<rect x="191.0" y="240" width="336.0" height="34" rx="4" fill="#0ca30c"><title>D. LoRA com contexto: Correta = 13</title></rect>
+<text x="359.0" y="262.0" font-size="13" font-weight="600" fill="#ffffff" text-anchor="middle">13</text>
+<rect x="529.0" y="240" width="154.0" height="34" rx="4" fill="#2a78d6"><title>D. LoRA com contexto: Recusa correta = 6</title></rect>
+<text x="606.0" y="262.0" font-size="13" font-weight="600" fill="#ffffff" text-anchor="middle">6</text>
+<rect x="685.0" y="240" width="24.0" height="34" rx="4" fill="#d03b3b"><title>D. LoRA com contexto: Erro afirmado = 1</title></rect>
+<text x="697.0" y="262.0" font-size="13" font-weight="600" fill="#ffffff" text-anchor="middle">1</text>
+</svg>

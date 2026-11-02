@@ -107,7 +107,9 @@ class TestRelatorio(unittest.TestCase):
                 shutil.copy(PASTA_RESULTS / nome, tmp)
             texto = gerar_relatorio(Path(tmp))
         for trecho in ("1. Respostas baseadas na fonte", "2. Redução de alucinação", "3. Relevância e precisão",
-                       "4. Uso correto do contexto", "Inventou informação", "O que mudou entre os modos"):
+                       "4. Uso correto do contexto", "Inventou informação", "O que mudou entre os modos",
+                       "Precisão das respostas dadas", "Respostas erradas afirmadas como certas",
+                       "composicao_respostas.svg", "Implicações para um ambiente corporativo"):
             self.assertIn(trecho, texto)
 
     def test_revisao_manual_ignorada_se_respostas_mudarem(self):
