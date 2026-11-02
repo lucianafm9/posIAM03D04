@@ -154,6 +154,16 @@ Sem esses ajustes, o `trainer.train()` falha com `gemm input type at::BFloat16 a
 
 O contexto de cada exemplo de treino vem da mesma busca usada na inferência. Assim, nas perguntas fora da base o modelo vê trechos que parecem relacionados mas não respondem, e aprende a recusar mesmo assim.
 
+**Treino executado.** No Colab, com GPU T4, foram 30 passos em 3 épocas, com 1 min 22 s de treino. O LoRA treinou 2.179.072 parâmetros, 0,14% do modelo. O loss caiu de forma contínua:
+
+| Passo | 5 | 10 | 15 | 20 | 25 | 30 |
+|---|---:|---:|---:|---:|---:|---:|
+| Training loss | 2,183 | 2,064 | 1,909 | 1,751 | 1,664 | 1,579 |
+
+O valor absoluto é alto porque, como na aula, o loss é calculado sobre a sequência inteira, incluindo o prompt de sistema e os trechos do contexto. Esses tokens são longos e o modelo não tem como prevê-los. O que importa é a tendência de queda e o efeito medido na avaliação: recusa e citação da fonte. Um próximo passo seria calcular o loss só sobre a resposta (`assistant_only_loss=True`).
+
+O notebook executado, com todas as saídas, está em `notebooks/micro_capstone_assistente_executado.ipynb`. As métricas impressas nele são as da primeira versão do avaliador (ver "Revisão do avaliador" em Resultados).
+
 ## Avaliação
 
 Cada resposta do teste é classificada automaticamente (`assistente/avaliacao.py`):
@@ -388,7 +398,8 @@ data/
   perguntas.json          60 perguntas com gabarito (fonte e fatos), divididas em treino e teste
   treino.jsonl, teste.jsonl
 notebooks/
-  micro_capstone_assistente.ipynb   Colab: baseline, fine-tuning LoRA e avaliação dos 4 modos
+  micro_capstone_assistente.ipynb             Colab: baseline, fine-tuning LoRA e avaliação dos 4 modos
+  micro_capstone_assistente_executado.ipynb   o mesmo notebook com as saídas da execução na T4
 scripts/                  demo do contexto, avaliação da busca, geração do dataset e reavaliação
 tests/                    testes sem modelo (unittest)
 results/
