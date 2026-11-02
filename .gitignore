@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.DS_Store
+.ipynb_checkpoints/
+
+# saídas do treino no Colab (o adapter final vai no zip baixado pelo notebook)
+lora-output/
+lora-adapter-conhecimento/
+*.zip

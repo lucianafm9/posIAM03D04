@@ -1,0 +1,12 @@
+{
+  "treino": {
+    "perguntas": 30,
+    "acerto_top1": 100.0,
+    "recall_top3": 100.0
+  },
+  "teste": {
+    "perguntas": 14,
+    "acerto_top1": 100.0,
+    "recall_top3": 100.0
+  }
+}
